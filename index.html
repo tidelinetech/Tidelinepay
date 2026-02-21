@@ -1,3 +1,7 @@
+
+Tideline pay signup · HTML
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* Animated ocean background */
   .ocean-bg {
     position: fixed;
     inset: 0;
@@ -62,7 +65,6 @@
     50% { transform: translateX(-25%) translateY(-15px); }
   }
 
-  /* Grid overlay */
   .grid-overlay {
     position: fixed;
     inset: 0;
@@ -81,7 +83,6 @@
     padding: 60px 24px 80px;
   }
 
-  /* Header */
   .header {
     text-align: center;
     margin-bottom: 56px;
@@ -113,9 +114,7 @@
     letter-spacing: -0.02em;
   }
 
-  .logo-text span {
-    color: var(--ocean-light);
-  }
+  .logo-text span { color: var(--ocean-light); }
 
   h1 {
     font-family: 'Instrument Serif', serif;
@@ -141,7 +140,6 @@
     margin: 0 auto;
   }
 
-  /* Steps indicator */
   .steps {
     display: flex;
     align-items: center;
@@ -207,7 +205,6 @@
 
   .step-line.done { background: var(--success); }
 
-  /* Card */
   .card {
     background: rgba(13, 37, 69, 0.6);
     border: 1px solid rgba(26,86,219,0.2);
@@ -239,10 +236,7 @@
     line-height: 1.5;
   }
 
-  /* Form fields */
-  .field {
-    margin-bottom: 20px;
-  }
+  .field { margin-bottom: 20px; }
 
   label {
     display: block;
@@ -284,7 +278,6 @@
     opacity: 0.7;
   }
 
-  /* Pricing pill */
   .pricing-pill {
     display: inline-flex;
     align-items: center;
@@ -305,7 +298,6 @@
     color: var(--gold);
   }
 
-  /* Stripe Connect button */
   .stripe-connect-btn {
     width: 100%;
     background: #635bff;
@@ -349,7 +341,6 @@
 
   .connected-badge.show { display: flex; }
 
-  /* Primary button */
   .btn-primary {
     width: 100%;
     background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light));
@@ -396,7 +387,6 @@
 
   .btn-secondary:hover { border-color: var(--ocean-bright); color: var(--text); }
 
-  /* Divider */
   .divider {
     display: flex;
     align-items: center;
@@ -407,7 +397,6 @@
   .divider-line { flex: 1; height: 1px; background: rgba(139,172,200,0.15); }
   .divider-text { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
-  /* What you get list */
   .benefits {
     list-style: none;
     margin-bottom: 28px;
@@ -436,7 +425,6 @@
     font-size: 10px;
   }
 
-  /* Success state */
   .success-card {
     text-align: center;
     padding: 20px 0;
@@ -517,7 +505,6 @@
 
   .clearfix::after { content: ''; display: table; clear: both; }
 
-  /* Secure note */
   .secure-note {
     display: flex;
     align-items: center;
@@ -529,7 +516,6 @@
     margin-top: 20px;
   }
 
-  /* Animations */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -544,7 +530,6 @@
 
   .error-msg.show { display: block; }
 
-  /* Loading spinner */
   .spinner {
     width: 18px;
     height: 18px;
@@ -557,7 +542,6 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
-  /* Phone preview */
   .phone-number-preview {
     font-size: 13px;
     color: var(--ocean-light);
@@ -587,7 +571,6 @@
 
 <div class="container">
 
-  <!-- Header -->
   <div class="header">
     <div class="logo">
       <div class="logo-mark">⚓</div>
@@ -597,7 +580,6 @@
     <p class="subtitle">Your customers pay instantly. You get paid faster. Setup takes 5 minutes.</p>
   </div>
 
-  <!-- Steps -->
   <div class="steps" id="stepsIndicator">
     <div class="step active" id="step-indicator-1">
       <div class="step-dot">1</div>
@@ -615,7 +597,6 @@
     </div>
   </div>
 
-  <!-- Card -->
   <div class="card">
 
     <!-- Step 1: Business Info -->
@@ -639,7 +620,7 @@
 
       <div class="field">
         <label>Your Email</label>
-        <input type="email" id="email" placeholder="you@yourmarina.com" autocomplete="email">
+        <input type="email" id="email" placeholder="you@yourbusiness.com" autocomplete="email">
         <div class="error-msg" id="email-error">Please enter a valid email</div>
       </div>
 
@@ -652,22 +633,10 @@
       <div class="card-desc">Payment links go directly into your Stripe account. We never touch your money.</div>
 
       <ul class="benefits">
-        <li>
-          <div class="icon">✓</div>
-          Customers pay via secure Stripe checkout
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          Funds deposit directly to your bank account
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          We never have access to your payments
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          Works with your existing Stripe account
-        </li>
+        <li><div class="icon">✓</div>Customers pay via secure Stripe checkout</li>
+        <li><div class="icon">✓</div>Funds deposit directly to your bank account</li>
+        <li><div class="icon">✓</div>We never have access to your payments</li>
+        <li><div class="icon">✓</div>Works with your existing Stripe account</li>
       </ul>
 
       <div class="connected-badge" id="connectedBadge">
@@ -682,7 +651,7 @@
         Connect with Stripe
       </button>
 
-      <div class="error-msg show" id="stripe-error" style="display:none; text-align:center; margin-bottom:12px;"></div>
+      <div class="error-msg" id="stripe-error" style="text-align:center; margin-bottom:12px;"></div>
 
       <button class="btn-primary" id="continueToPayBtn" onclick="goToStep3()" disabled>
         Continue to subscription →
@@ -696,31 +665,19 @@
       <div class="card-desc">Unlimited PAY messages. Cancel anytime.</div>
 
       <div class="pricing-pill">
-        <span class="price">$19</span>
+        <span class="price">$29</span>
         <span>/ month · cancel anytime</span>
       </div>
 
       <ul class="benefits">
-        <li>
-          <div class="icon">✓</div>
-          Unlimited payment links via SMS
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          Text PAY [number] [amount] — that's it
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          Customers get Stripe checkout link instantly
-        </li>
-        <li>
-          <div class="icon">✓</div>
-          Live in 5 minutes after signup
-        </li>
+        <li><div class="icon">✓</div>Unlimited payment links via SMS</li>
+        <li><div class="icon">✓</div>Text PAY [number] [amount] — that's it</li>
+        <li><div class="icon">✓</div>Customers get Stripe checkout link instantly</li>
+        <li><div class="icon">✓</div>Live in 5 minutes after signup</li>
       </ul>
 
       <button class="btn-primary" id="subscribeBtn" onclick="handleSubscribe()">
-        <span id="subscribeBtnText">Pay $19/month with Stripe →</span>
+        <span id="subscribeBtnText">Pay $29/month with Stripe →</span>
         <div class="spinner" id="subscribeSpinner"></div>
       </button>
       <button class="btn-secondary" onclick="goToStep2()">← Back</button>
@@ -740,7 +697,7 @@
         <div class="success-icon">⚓</div>
         <div class="success-title">You're live!</div>
         <div class="success-desc" id="successDesc">
-          Your account is active. Text your Twilio number right now to send your first payment link.
+          Your account is active. Text your Tideline number right now to send your first payment link.
         </div>
 
         <div class="sms-demo">
@@ -763,7 +720,6 @@
 </div>
 
 <script>
-  // ── State ────────────────────────────────────────────────────────────────
   const state = {
     businessName: '',
     businessPhone: '',
@@ -773,34 +729,18 @@
     currentStep: 1
   };
 
-  // ── CONFIG — replace these with your real values ─────────────────────────
   const CONFIG = {
-    // Your Stripe publishable key
     STRIPE_PUBLISHABLE_KEY: 'pk_live_51SujfGAfYhUXAsMqvBESG6bqbjoYBqsX2ZT7CFvrcj2PGPRhM9afRakyTjMM8F7rHFGWLtJZKcJlubisV5wa7LEk0062fHxFS3',
-    // Your Stripe Connect client_id (from Stripe Dashboard > Connect > Settings)
     STRIPE_CLIENT_ID: 'ca_U1MDYLYMrR8el3KiX4WPHbGRZwSecMji',
-    // Your subscription price ID (from Stripe Dashboard > Products)
     STRIPE_PRICE_ID: 'price_1T3JQqAfYhUXAsMqwr0Be6Nc',
-    // Your backend URL that handles the OAuth callback and creates subscriptions
-    // This can be a Twilio Function or any server endpoint
     BACKEND_URL: 'https://tideline-pay-3364.twil.io/backend',
-    // Your Twilio PAY number formatted nicely
-    TIDELINE_NUMBER: '+18609835640'
+    TIDELINE_NUMBER: '+1 (860) 983-5640'
   };
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
   function toE164(raw) {
     const d = raw.replace(/\D/g, '');
     if (d.length === 10) return '+1' + d;
     if (d.length === 11 && d[0] === '1') return '+' + d;
-    return '';
-  }
-
-  function formatPhone(raw) {
-    const d = raw.replace(/\D/g, '').slice(0, 10);
-    if (d.length >= 7) return `(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`;
-    if (d.length >= 4) return `(${d.slice(0,3)}) ${d.slice(3)}`;
-    if (d.length >= 1) return `(${d}`;
     return '';
   }
 
@@ -822,10 +762,8 @@
     document.getElementById(id).classList.add('active');
   }
 
-  // ── Phone input formatting ───────────────────────────────────────────────
   document.getElementById('businessPhone').addEventListener('input', function(e) {
-    const raw = e.target.value;
-    const e164 = toE164(raw);
+    const e164 = toE164(e.target.value);
     const preview = document.getElementById('phonePreview');
     if (e164) {
       preview.textContent = 'Registered as: ' + e164;
@@ -835,7 +773,6 @@
     }
   });
 
-  // ── Step navigation ───────────────────────────────────────────────────────
   function goToStep1() {
     state.currentStep = 1;
     updateStepIndicator(1);
@@ -843,10 +780,8 @@
   }
 
   function goToStep2() {
-    // Validate step 1
     let valid = true;
-
-    const name = document.getElementById('businessName').value.trim();
+    const name  = document.getElementById('businessName').value.trim();
     const phone = document.getElementById('businessPhone').value.trim();
     const email = document.getElementById('email').value.trim();
 
@@ -869,8 +804,7 @@
       document.getElementById('businessPhone-error').classList.remove('show');
     }
 
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!emailValid) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       document.getElementById('email').classList.add('error');
       document.getElementById('email-error').classList.add('show');
       valid = false;
@@ -881,10 +815,10 @@
 
     if (!valid) return;
 
-    state.businessName = name;
+    state.businessName  = name;
     state.businessPhone = e164;
-    state.email = email;
-    state.currentStep = 2;
+    state.email         = email;
+    state.currentStep   = 2;
     updateStepIndicator(2);
     showPanel('panel-2');
   }
@@ -896,7 +830,6 @@
     showPanel('panel-3');
   }
 
-  // ── Stripe Connect OAuth ─────────────────────────────────────────────────
   function connectStripe() {
     const params = new URLSearchParams({
       response_type: 'code',
@@ -909,17 +842,14 @@
       })),
       redirect_uri: window.location.origin + window.location.pathname + '?stripe_callback=1'
     });
-
-    const stripeOAuthUrl = 'https://connect.stripe.com/oauth/authorize?' + params.toString();
-    window.location.href = stripeOAuthUrl;
+    window.location.href = 'https://connect.stripe.com/oauth/authorize?' + params.toString();
   }
 
-  // ── Handle OAuth callback ────────────────────────────────────────────────
   function checkStripeCallback() {
-    const params = new URLSearchParams(window.location.search);
-    const code = params.get('code');
+    const params     = new URLSearchParams(window.location.search);
+    const code       = params.get('code');
     const stateParam = params.get('state');
-    const error = params.get('error');
+    const error      = params.get('error');
 
     if (error) {
       alert('Stripe connection cancelled. Please try again.');
@@ -929,25 +859,29 @@
 
     if (!code) return;
 
-    // Restore state from OAuth state param
     try {
-      const restored = JSON.parse(atob(stateParam));
-      state.businessName = restored.businessName;
+      const restored      = JSON.parse(atob(stateParam));
+      state.businessName  = restored.businessName;
       state.businessPhone = restored.businessPhone;
-      state.email = restored.email;
+      state.email         = restored.email;
     } catch(e) {}
 
-    // Exchange code for access token via your backend
-    fetch(CONFIG.BACKEND_URL + '/stripe-connect', {
+    // ✅ FIXED: use ?action= not /stripe-connect
+    fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ code: code })
+      body: JSON.stringify({
+        code: code,
+        businessName: state.businessName,
+        businessPhone: state.businessPhone,
+        email: state.email
+      })
     })
     .then(function(r) { return r.json(); })
     .then(function(data) {
       if (data.stripe_user_id) {
-        state.stripeConnected = true;
-        state.stripeAccountId = data.stripe_user_id;
+        state.stripeConnected  = true;
+        state.stripeAccountId  = data.stripe_user_id;
         markStripeConnected();
         state.currentStep = 2;
         updateStepIndicator(2);
@@ -973,28 +907,27 @@
     document.getElementById('continueToPayBtn').disabled = false;
   }
 
-  // ── Subscription checkout ─────────────────────────────────────────────────
   function handleSubscribe() {
-    const btn = document.getElementById('subscribeBtn');
+    const btn     = document.getElementById('subscribeBtn');
     const btnText = document.getElementById('subscribeBtnText');
     const spinner = document.getElementById('subscribeSpinner');
 
-    btn.disabled = true;
+    btn.disabled         = true;
     btnText.style.display = 'none';
     spinner.style.display = 'block';
 
-    // Create Stripe Checkout session via your backend
-    fetch(CONFIG.BACKEND_URL + '/create-checkout', {
+    // ✅ FIXED: use ?action= not /create-checkout
+    fetch(CONFIG.BACKEND_URL + '?action=create-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        priceId: CONFIG.STRIPE_PRICE_ID,
-        businessName: state.businessName,
-        businessPhone: state.businessPhone,
-        email: state.email,
+        priceId:         CONFIG.STRIPE_PRICE_ID,
+        businessName:    state.businessName,
+        businessPhone:   state.businessPhone,
+        email:           state.email,
         stripeAccountId: state.stripeAccountId,
         successUrl: window.location.origin + window.location.pathname + '?success=1&biz=' + encodeURIComponent(state.businessName),
-        cancelUrl: window.location.href
+        cancelUrl:  window.location.href
       })
     })
     .then(function(r) { return r.json(); })
@@ -1006,14 +939,13 @@
       }
     })
     .catch(function(err) {
-      btn.disabled = false;
+      btn.disabled          = false;
       btnText.style.display = 'block';
       spinner.style.display = 'none';
-      alert('Error: ' + err.message + '\n\nMake sure your backend URL is configured.');
+      alert('Error: ' + err.message);
     });
   }
 
-  // ── Handle success callback ───────────────────────────────────────────────
   function checkSuccessCallback() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('success') === '1') {
@@ -1026,7 +958,6 @@
     }
   }
 
-  // ── Init ──────────────────────────────────────────────────────────────────
   checkStripeCallback();
   checkSuccessCallback();
 </script>
