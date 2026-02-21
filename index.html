@@ -867,16 +867,16 @@ Copy
     } catch(e) {}
 
     // ✅ FIXED: use ?action= not /stripe-connect
-    fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        code: code,
-        businessName: state.businessName,
-        businessPhone: state.businessPhone,
-        email: state.email
-      })
-    })
+fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    code: code,
+    businessName: state.businessName,
+    businessPhone: state.businessPhone,
+    email: state.email
+  })
+})
 .then(async function(r) {
   const text = await r.text();
   let data;
@@ -902,13 +902,6 @@ Copy
   showPanel('panel-2');
   updateStepIndicator(2);
 });
-    .catch(function(err) {
-      const errEl = document.getElementById('stripe-error');
-      errEl.textContent = 'Could not connect Stripe: ' + err.message;
-      errEl.style.display = 'block';
-      showPanel('panel-2');
-      updateStepIndicator(2);
-    });
 
     window.history.replaceState({}, '', window.location.pathname);
   }
