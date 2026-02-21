@@ -845,17 +845,80 @@ Copy
     window.location.href = 'https://connect.stripe.com/oauth/authorize?' + params.toString();
   }
 
-  function checkStripeCallback() {
-    const params     = new URLSearchParams(window.location.search);
-    const code       = params.get('code');
-    const stateParam = params.get('state');
-    const error      = params.get('error');
+function checkStripeCallback() {
+  const params     = new URLSearchParams(window.location.search);
+  const code       = params.get('code');
+  const stateParam = params.get('state');
+  const error      = params.get('error');
 
-    if (error) {
-      alert('Stripe connection cancelled. Please try again.');
-      window.history.replaceState({}, '', window.location.pathname);
-      return;
+  if (error) {
+    alert('Stripe connection cancelled. Please try again.');
+    window.history.replaceState({}, '', window.location.pathname);
+    return;
+  }
+
+  if (!code) return;
+
+  // Restore saved state
+  try {
+    const restored = JSON.parse(atob(stateParam || ''));
+    state.businessName  = restored.businessName || state.businessName;
+    state.businessPhone = restored.businessPhone || state.businessPhone;
+    state.email         = restored.email || state.email;
+  } catch (e) {}
+
+  const errEl = document.getElementById('stripe-error');
+  errEl.style.display = 'none';
+  errEl.textContent = '';
+
+  fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      code,
+      businessName: state.businessName,
+      businessPhone: state.businessPhone,
+      email: state.email
+    })
+  })
+  .then(async (r) => {
+    const text = await r.text();
+    let data;
+
+    // Parse once
+    try { data = JSON.parse(text); } catch (e) { data = text; }
+
+    // If backend returned a JSON *string*, parse again
+    if (typeof data === 'string') {
+      try { data = JSON.parse(data); } catch (e) {}
     }
+
+    if (!r.ok) {
+      throw new Error((data && data.error) ? data.error : ('HTTP ' + r.status + ': ' + text));
+    }
+    return data;
+  })
+  .then((data) => {
+    if (data && data.stripe_user_id) {
+      state.stripeConnected = true;
+      state.stripeAccountId = data.stripe_user_id;
+      markStripeConnected();
+      updateStepIndicator(2);
+      showPanel('panel-2');
+    } else {
+      throw new Error('No stripe_user_id in response: ' + JSON.stringify(data));
+    }
+  })
+  .catch((err) => {
+    errEl.textContent = 'Could not connect Stripe: ' + err.message;
+    errEl.style.display = 'block';
+    showPanel('panel-2');
+    updateStepIndicator(2);
+  });
+
+  // Clean URL
+  window.history.replaceState({}, '', window.location.pathname);
+}
 
     if (!code) return;
 
