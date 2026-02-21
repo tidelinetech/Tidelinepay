@@ -877,19 +877,31 @@ Copy
         email: state.email
       })
     })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      if (data.stripe_user_id) {
-        state.stripeConnected  = true;
-        state.stripeAccountId  = data.stripe_user_id;
-        markStripeConnected();
-        state.currentStep = 2;
-        updateStepIndicator(2);
-        showPanel('panel-2');
-      } else {
-        throw new Error(data.error || 'Connection failed');
-      }
-    })
+.then(async function(r) {
+  const text = await r.text();
+  let data;
+  try { data = JSON.parse(text); } catch(e) { data = { raw: text }; }
+  if (!r.ok) throw new Error('HTTP ' + r.status + ': ' + (data.error || data.raw || text));
+  return data;
+})
+.then(function(data) {
+  if (data.stripe_user_id) {
+    state.stripeConnected = true;
+    state.stripeAccountId = data.stripe_user_id;
+    markStripeConnected();
+    updateStepIndicator(2);
+    showPanel('panel-2');
+  } else {
+    throw new Error('No stripe_user_id in response: ' + JSON.stringify(data));
+  }
+})
+.catch(function(err) {
+  const errEl = document.getElementById('stripe-error');
+  errEl.textContent = 'Could not connect Stripe: ' + err.message;
+  errEl.style.display = 'block';
+  showPanel('panel-2');
+  updateStepIndicator(2);
+});
     .catch(function(err) {
       const errEl = document.getElementById('stripe-error');
       errEl.textContent = 'Could not connect Stripe: ' + err.message;
