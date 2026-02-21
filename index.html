@@ -881,23 +881,44 @@ function checkStripeCallback() {
       email: state.email
     })
   })
-  .then(async (r) => {
-    const text = await r.text();
-    let data;
+.then(async (r) => {
+  const raw = await r.text();
 
-    // Parse once
-    try { data = JSON.parse(text); } catch (e) { data = text; }
+  function deepParse(x) {
+    let v = x;
+    for (let i = 0; i < 4; i++) {
+      if (typeof v !== 'string') return v;
 
-    // If backend returned a JSON *string*, parse again
-    if (typeof data === 'string') {
-      try { data = JSON.parse(data); } catch (e) {}
+      const t = v.trim();
+
+      // try normal JSON.parse
+      try { v = JSON.parse(t); continue; } catch (e) {}
+
+      // if it's a quoted/escaped JSON string, unescape and try again
+      const unescaped = t
+        .replace(/^"+|"+$/g, '')   // strip wrapping quotes
+        .replace(/\\"/g, '"')      // unescape quotes
+        .replace(/\\n/g, '\n');    // unescape newlines
+
+      try { v = JSON.parse(unescaped); continue; } catch (e) {}
+
+      // can't parse further
+      return v;
     }
+    return v;
+  }
 
-    if (!r.ok) {
-      throw new Error((data && data.error) ? data.error : ('HTTP ' + r.status + ': ' + text));
-    }
-    return data;
-  })
+  const data = deepParse(raw);
+
+  if (!r.ok) {
+    const msg =
+      (data && typeof data === 'object' && data.error) ? data.error :
+      (typeof data === 'string' ? data : raw);
+    throw new Error('HTTP ' + r.status + ': ' + msg);
+  }
+
+  return data;
+})
   .then((data) => {
     if (data && data.stripe_user_id) {
       state.stripeConnected = true;
