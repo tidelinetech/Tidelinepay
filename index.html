@@ -404,14 +404,18 @@
         email:         state.email
       })
     })
-    .then(function(r) {
-      return r.text().then(function(text) {
-        var data;
-        try { data = JSON.parse(text); } catch(e) { data = { raw: text }; }
-        if (!r.ok) throw new Error((data && data.error) ? data.error : text);
-        return data;
-      });
-    })
+.then(function(r) {
+  return r.text().then(function(text) {
+    var data;
+    try {
+      data = JSON.parse(text);
+      // Handle double-encoded response
+      if (typeof data === 'string') { data = JSON.parse(data); }
+    } catch(e) { data = { raw: text }; }
+    if (!r.ok) throw new Error((data && data.error) ? data.error : text);
+    return data;
+  });
+})
     .then(function(data) {
       if (data && data.stripe_user_id) {
         state.stripeConnected = true;
