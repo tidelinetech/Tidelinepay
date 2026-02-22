@@ -412,6 +412,7 @@ function handleSubscribe() {
       businessPhone:   state.businessPhone,
       email:           state.email,
       stripeAccountId: state.stripeAccountId,
+      state.accessToken = data.access_token;
       successUrl: window.location.origin + window.location.pathname + '?success=1&biz=' + encodeURIComponent(state.businessName),
       cancelUrl:  window.location.href
     })
