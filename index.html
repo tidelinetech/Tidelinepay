@@ -17,21 +17,11 @@
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'DM Sans', sans-serif; background: var(--ocean-deep); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-  .ocean-bg {
-    position: fixed; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(26,86,219,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 50%),
-      linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
-  }
+  .ocean-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 80% 50% at 20% 80%, rgba(26,86,219,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(59,130,246,0.08) 0%, transparent 50%), linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%); }
   .wave { position: fixed; bottom: 0; left: 0; width: 200%; height: 120px; opacity: 0.06; animation: wave 8s ease-in-out infinite; }
   .wave-2 { animation: wave 12s ease-in-out infinite reverse; opacity: 0.04; bottom: 20px; }
   @keyframes wave { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-25%) translateY(-15px); } }
-  .grid-overlay {
-    position: fixed; inset: 0; z-index: 0;
-    background-image: linear-gradient(rgba(26,86,219,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
+  .grid-overlay { position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.03) 1px, transparent 1px); background-size: 60px 60px; }
   .container { position: relative; z-index: 10; max-width: 560px; margin: 0 auto; padding: 60px 24px 80px; }
   .header { text-align: center; margin-bottom: 56px; animation: fadeUp 0.6s ease both; }
   .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 32px; }
@@ -77,6 +67,12 @@
   .benefits { list-style: none; margin-bottom: 28px; }
   .benefits li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-muted); padding: 6px 0; line-height: 1.5; }
   .benefits li .icon { width: 18px; height: 18px; background: rgba(34,197,94,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 10px; }
+  .error-msg { font-size: 12px; color: #ef4444; margin-top: 6px; display: none; }
+  .error-msg.show { display: block; }
+  .error-box { font-size: 13px; color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; display: none; }
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; vertical-align: middle; margin-left: 8px; display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .phone-number-preview { font-size: 13px; color: var(--ocean-light); margin-top: 6px; font-weight: 500; display: none; }
   .success-card { text-align: center; padding: 20px 0; }
   .success-icon { width: 72px; height: 72px; background: rgba(34,197,94,0.1); border: 2px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both; }
   @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
@@ -89,12 +85,6 @@
   .clearfix::after { content: ''; display: table; clear: both; }
   .secure-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: var(--text-muted); opacity: 0.6; margin-top: 20px; }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .error-msg { font-size: 12px; color: #ef4444; margin-top: 6px; display: none; }
-  .error-msg.show { display: block; }
-  .stripe-error-box { font-size: 13px; color: #ef4444; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 8px; padding: 10px 14px; margin-bottom: 12px; display: none; }
-  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; display: none; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .phone-number-preview { font-size: 13px; color: var(--ocean-light); margin-top: 6px; font-weight: 500; display: none; }
   @media (max-width: 480px) { .card { padding: 28px 20px; } .container { padding: 40px 16px 60px; } .step-line { width: 36px; } }
 </style>
 </head>
@@ -102,15 +92,10 @@
 
 <div class="ocean-bg"></div>
 <div class="grid-overlay"></div>
-<svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
-  <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="#1a56db"/>
-</svg>
-<svg class="wave wave-2" viewBox="0 0 1440 120" preserveAspectRatio="none">
-  <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,30 1440,40 L1440,120 L0,120 Z" fill="#3b82f6"/>
-</svg>
+<svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="#1a56db"/></svg>
+<svg class="wave wave-2" viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,30 1440,40 L1440,120 L0,120 Z" fill="#3b82f6"/></svg>
 
 <div class="container">
-
   <div class="header">
     <div class="logo">
       <div class="logo-mark">⚓</div>
@@ -121,20 +106,11 @@
   </div>
 
   <div class="steps" id="stepsIndicator">
-    <div class="step active" id="step-indicator-1">
-      <div class="step-dot">1</div>
-      <div class="step-label">Your Info</div>
-    </div>
+    <div class="step active" id="step-indicator-1"><div class="step-dot">1</div><div class="step-label">Your Info</div></div>
     <div class="step-line" id="line-1-2"></div>
-    <div class="step" id="step-indicator-2">
-      <div class="step-dot">2</div>
-      <div class="step-label">Stripe</div>
-    </div>
+    <div class="step" id="step-indicator-2"><div class="step-dot">2</div><div class="step-label">Stripe</div></div>
     <div class="step-line" id="line-2-3"></div>
-    <div class="step" id="step-indicator-3">
-      <div class="step-dot">3</div>
-      <div class="step-label">Subscribe</div>
-    </div>
+    <div class="step" id="step-indicator-3"><div class="step-dot">3</div><div class="step-label">Subscribe</div></div>
   </div>
 
   <div class="card">
@@ -145,41 +121,38 @@
       <div class="card-desc">This is how we identify you when you text PAY.</div>
       <div class="field">
         <label>Business Name</label>
-        <input type="text" id="businessName" placeholder="e.g. Sunrise Marina" autocomplete="organization">
-        <div class="error-msg" id="businessName-error">Please enter your business name</div>
+        <input type="text" id="businessName" placeholder="e.g. Sunrise Auto" autocomplete="organization">
+        <div class="error-msg" id="err-name">Please enter your business name</div>
       </div>
       <div class="field">
         <label>Your Mobile Number</label>
-        <input type="tel" id="businessPhone" placeholder="(610) 555-0100" autocomplete="tel">
-        <div class="field-hint">This is the number you'll text PAY from</div>
+        <input type="tel" id="businessPhone" placeholder="(860) 555-0100" autocomplete="tel">
+        <div class="field-hint">The number you'll text PAY from</div>
         <div class="phone-number-preview" id="phonePreview"></div>
-        <div class="error-msg" id="businessPhone-error">Please enter a valid 10-digit US number</div>
+        <div class="error-msg" id="err-phone">Please enter a valid 10-digit US number</div>
       </div>
       <div class="field">
         <label>Your Email</label>
         <input type="email" id="email" placeholder="you@yourbusiness.com" autocomplete="email">
-        <div class="error-msg" id="email-error">Please enter a valid email</div>
+        <div class="error-msg" id="err-email">Please enter a valid email</div>
       </div>
-      <button class="btn-primary" onclick="goToStep2()">Continue →</button>
+      <button class="btn-primary" id="continueBtn" onclick="goToStep2()">Continue →</button>
     </div>
 
     <!-- Step 2 -->
     <div class="step-panel" id="panel-2">
       <div class="card-title">Connect your Stripe account</div>
-      <div class="card-desc">Payment links go directly into your Stripe account. We never touch your money.</div>
+      <div class="card-desc">Payment links go directly into your Stripe. We never touch your money.</div>
       <ul class="benefits">
         <li><div class="icon">✓</div>Customers pay via secure Stripe checkout</li>
-        <li><div class="icon">✓</div>Funds deposit directly to your bank account</li>
+        <li><div class="icon">✓</div>Funds deposit directly to your bank</li>
         <li><div class="icon">✓</div>We never have access to your payments</li>
         <li><div class="icon">✓</div>Works with your existing Stripe account</li>
       </ul>
-      <div class="connected-badge" id="connectedBadge"><span>✓</span> Stripe account connected successfully</div>
-      <div class="stripe-error-box" id="stripeErrorBox"></div>
+      <div class="connected-badge" id="connectedBadge"><span>✓</span> Stripe connected successfully</div>
+      <div class="error-box" id="stripeErrorBox"></div>
       <button class="stripe-connect-btn" id="stripeConnectBtn" onclick="connectStripe()">
-        <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
-          <path d="M13.333 10.667C13.333 9.196 14.529 8 16 8s2.667 1.196 2.667 2.667c0 1.07-.63 2-1.556 2.456v7.544h-2.222v-7.544c-.926-.456-1.556-1.386-1.556-2.456z" fill="white"/>
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16S8.636 29.333 16 29.333 29.333 23.364 29.333 16 23.364 2.667 16 2.667zM0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16z" fill="white" opacity="0.4"/>
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none"><path d="M13.333 10.667C13.333 9.196 14.529 8 16 8s2.667 1.196 2.667 2.667c0 1.07-.63 2-1.556 2.456v7.544h-2.222v-7.544c-.926-.456-1.556-1.386-1.556-2.456z" fill="white"/><path fill-rule="evenodd" clip-rule="evenodd" d="M16 2.667C8.636 2.667 2.667 8.636 2.667 16S8.636 29.333 16 29.333 29.333 23.364 29.333 16 23.364 2.667 16 2.667zM0 16C0 7.163 7.163 0 16 0s16 7.163 16 16-7.163 16-16 16S0 24.837 0 16z" fill="white" opacity="0.4"/></svg>
         Connect with Stripe
       </button>
       <button class="btn-primary" id="continueToPayBtn" onclick="goToStep3()" disabled>Continue to subscription →</button>
@@ -194,9 +167,10 @@
       <ul class="benefits">
         <li><div class="icon">✓</div>Unlimited payment links via SMS</li>
         <li><div class="icon">✓</div>Text PAY [number] [amount] — that's it</li>
-        <li><div class="icon">✓</div>Customers get Stripe checkout link instantly</li>
+        <li><div class="icon">✓</div>Customers get Stripe checkout instantly</li>
         <li><div class="icon">✓</div>Live in 5 minutes after signup</li>
       </ul>
+      <div class="error-box" id="checkoutErrorBox"></div>
       <button class="btn-primary" id="subscribeBtn" onclick="handleSubscribe()">
         <span id="subscribeBtnText">Pay $24/month with Stripe →</span>
         <div class="spinner" id="subscribeSpinner"></div>
@@ -229,280 +203,254 @@
 </div>
 
 <script>
-  // ── State ─────────────────────────────────────────────────────────────────
-  var state = {
-    businessName: '',
-    businessPhone: '',
-    email: '',
-    stripeConnected: false,
-    stripeAccountId: ''
-  };
+var state = {
+  businessName: '',
+  businessPhone: '',
+  email: '',
+  stripeConnected: false,
+  stripeAccountId: ''
+};
 
-  // ── CONFIG ────────────────────────────────────────────────────────────────
-  var CONFIG = {
-    STRIPE_CLIENT_ID: 'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',
-    STRIPE_PRICE_ID:  'price_1T3SqUPE9ohTemmild9Kw7zQ',
-    BACKEND_URL:      'https://tideline-pay-3364.twil.io/backend',
-    TIDELINE_NUMBER:  '+1 (860) 983-5640'
-  };
+var CONFIG = {
+  STRIPE_CLIENT_ID: 'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',
+  STRIPE_PRICE_ID:  'price_1T3SqUPE9ohTemmild9Kw7zQ',
+  BACKEND_URL:      'https://tideline-pay-3364.twil.io/backend',
+  TIDELINE_NUMBER:  '+1 (860) 983-5640'
+};
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
-  function toE164(raw) {
-    var d = raw.replace(/\D/g, '');
-    if (d.length === 10) return '+1' + d;
-    if (d.length === 11 && d[0] === '1') return '+' + d;
-    return '';
-  }
+function toE164(raw) {
+  var d = raw.replace(/\D/g, '');
+  if (d.length === 10) return '+1' + d;
+  if (d.length === 11 && d[0] === '1') return '+' + d;
+  return '';
+}
 
-  function updateStepIndicator(step) {
-    [1,2,3].forEach(function(i) {
-      var el = document.getElementById('step-indicator-' + i);
-      el.classList.remove('active', 'completed');
-      if (i < step) el.classList.add('completed');
-      if (i === step) el.classList.add('active');
-    });
-    document.getElementById('line-1-2').classList.toggle('done', step > 1);
-    document.getElementById('line-2-3').classList.toggle('done', step > 2);
-  }
-
-  function showPanel(id) {
-    document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById(id).classList.add('active');
-  }
-
-  function showStripeError(msg) {
-    var box = document.getElementById('stripeErrorBox');
-    box.textContent = msg;
-    box.style.display = 'block';
-  }
-
-  function hideStripeError() {
-    var box = document.getElementById('stripeErrorBox');
-    box.style.display = 'none';
-    box.textContent = '';
-  }
-
-  // ── Phone preview ─────────────────────────────────────────────────────────
-  document.getElementById('businessPhone').addEventListener('input', function(e) {
-    var e164 = toE164(e.target.value);
-    var preview = document.getElementById('phonePreview');
-    if (e164) { preview.textContent = 'Registered as: ' + e164; preview.style.display = 'block'; }
-    else { preview.style.display = 'none'; }
+function updateSteps(step) {
+  [1,2,3].forEach(function(i) {
+    var el = document.getElementById('step-indicator-' + i);
+    el.classList.remove('active','completed');
+    if (i < step) el.classList.add('completed');
+    if (i === step) el.classList.add('active');
   });
+  document.getElementById('line-1-2').classList.toggle('done', step > 1);
+  document.getElementById('line-2-3').classList.toggle('done', step > 2);
+}
 
-  // ── Navigation ────────────────────────────────────────────────────────────
-  function goToStep1() { updateStepIndicator(1); showPanel('panel-1'); }
+function showPanel(id) {
+  document.querySelectorAll('.step-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+}
 
-  function goToStep2() {
-    var valid = true;
-    var name  = document.getElementById('businessName').value.trim();
-    var phone = document.getElementById('businessPhone').value.trim();
-    var email = document.getElementById('email').value.trim();
+function safeParseJSON(text) {
+  var data;
+  try {
+    data = JSON.parse(text);
+    if (typeof data === 'string') data = JSON.parse(data);
+  } catch(e) {
+    data = { raw: text };
+  }
+  return data;
+}
 
-    if (!name) {
-      document.getElementById('businessName').classList.add('error');
-      document.getElementById('businessName-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('businessName').classList.remove('error');
-      document.getElementById('businessName-error').classList.remove('show');
-    }
+document.getElementById('businessPhone').addEventListener('input', function(e) {
+  var e164 = toE164(e.target.value);
+  var el = document.getElementById('phonePreview');
+  if (e164) { el.textContent = 'Registered as: ' + e164; el.style.display = 'block'; }
+  else { el.style.display = 'none'; }
+});
 
-    var e164 = toE164(phone);
-    if (!e164) {
-      document.getElementById('businessPhone').classList.add('error');
-      document.getElementById('businessPhone-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('businessPhone').classList.remove('error');
-      document.getElementById('businessPhone-error').classList.remove('show');
-    }
+function goToStep1() { updateSteps(1); showPanel('panel-1'); }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      document.getElementById('email').classList.add('error');
-      document.getElementById('email-error').classList.add('show');
-      valid = false;
-    } else {
-      document.getElementById('email').classList.remove('error');
-      document.getElementById('email-error').classList.remove('show');
-    }
+function goToStep2() {
+  var name  = document.getElementById('businessName').value.trim();
+  var phone = document.getElementById('businessPhone').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var valid = true;
 
-    if (!valid) return;
-
-    state.businessName  = name;
-    state.businessPhone = e164;
-    state.email         = email;
-    updateStepIndicator(2);
-    showPanel('panel-2');
+  if (!name) {
+    document.getElementById('businessName').classList.add('error');
+    document.getElementById('err-name').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('businessName').classList.remove('error');
+    document.getElementById('err-name').classList.remove('show');
   }
 
-  function goToStep3() {
-    if (!state.stripeConnected) return;
-    updateStepIndicator(3);
-    showPanel('panel-3');
+  var e164 = toE164(phone);
+  if (!e164) {
+    document.getElementById('businessPhone').classList.add('error');
+    document.getElementById('err-phone').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('businessPhone').classList.remove('error');
+    document.getElementById('err-phone').classList.remove('show');
   }
 
-  // ── Stripe Connect ────────────────────────────────────────────────────────
-  function connectStripe() {
-    hideStripeError();
-    var stateData = btoa(JSON.stringify({
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('email').classList.add('error');
+    document.getElementById('err-email').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('email').classList.remove('error');
+    document.getElementById('err-email').classList.remove('show');
+  }
+
+  if (!valid) return;
+
+  state.businessName  = name;
+  state.businessPhone = e164;
+  state.email         = email;
+  updateSteps(2);
+  showPanel('panel-2');
+}
+
+function goToStep3() {
+  if (!state.stripeConnected) return;
+  updateSteps(3);
+  showPanel('panel-3');
+}
+
+function connectStripe() {
+  var box = document.getElementById('stripeErrorBox');
+  box.style.display = 'none';
+  var stateData = btoa(JSON.stringify({
+    businessName:  state.businessName,
+    businessPhone: state.businessPhone,
+    email:         state.email
+  }));
+  var params = new URLSearchParams({
+    response_type: 'code',
+    client_id:     CONFIG.STRIPE_CLIENT_ID,
+    scope:         'read_write',
+    state:         stateData,
+    redirect_uri:  window.location.origin + window.location.pathname + '?stripe_callback=1'
+  });
+  window.location.href = 'https://connect.stripe.com/oauth/authorize?' + params.toString();
+}
+
+function checkStripeCallback() {
+  var params     = new URLSearchParams(window.location.search);
+  var code       = params.get('code');
+  var stateParam = params.get('state');
+  var error      = params.get('error');
+
+  if (error) {
+    window.history.replaceState({}, '', window.location.pathname);
+    updateSteps(2); showPanel('panel-2');
+    var box = document.getElementById('stripeErrorBox');
+    box.textContent = 'Stripe connection cancelled. Please try again.';
+    box.style.display = 'block';
+    return;
+  }
+
+  if (!code) return;
+
+  window.history.replaceState({}, '', window.location.pathname);
+
+  try {
+    var restored = JSON.parse(atob(stateParam || ''));
+    state.businessName  = restored.businessName  || '';
+    state.businessPhone = restored.businessPhone || '';
+    state.email         = restored.email         || '';
+  } catch(e) {}
+
+  updateSteps(2); showPanel('panel-2');
+
+  fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      code:          code,
       businessName:  state.businessName,
       businessPhone: state.businessPhone,
       email:         state.email
-    }));
-    var params = new URLSearchParams({
-      response_type: 'code',
-      client_id:     CONFIG.STRIPE_CLIENT_ID,
-      scope:         'read_write',
-      state:         stateData,
-      redirect_uri:  window.location.origin + window.location.pathname + '?stripe_callback=1'
+    })
+  })
+  .then(function(r) {
+    return r.text().then(function(text) {
+      var data = safeParseJSON(text);
+      if (!r.ok) throw new Error((data && data.error) ? data.error : text);
+      return data;
     });
-    window.location.href = 'https://connect.stripe.com/oauth/authorize?' + params.toString();
-  }
-
-  // ── OAuth callback ────────────────────────────────────────────────────────
-  function checkStripeCallback() {
-    var params     = new URLSearchParams(window.location.search);
-    var code       = params.get('code');
-    var stateParam = params.get('state');
-    var error      = params.get('error');
-
-    if (error) {
-      window.history.replaceState({}, '', window.location.pathname);
-      updateStepIndicator(2);
-      showPanel('panel-2');
-      showStripeError('Stripe connection cancelled. Please try again.');
-      return;
+  })
+  .then(function(data) {
+    if (data && data.stripe_user_id) {
+      state.stripeConnected = true;
+      state.stripeAccountId = data.stripe_user_id;
+      document.getElementById('connectedBadge').classList.add('show');
+      document.getElementById('stripeConnectBtn').style.display = 'none';
+      document.getElementById('continueToPayBtn').disabled = false;
+    } else {
+      throw new Error('No stripe_user_id in response');
     }
+  })
+  .catch(function(err) {
+    var box = document.getElementById('stripeErrorBox');
+    box.textContent = 'Could not connect Stripe: ' + err.message;
+    box.style.display = 'block';
+  });
+}
 
-    if (!code) return; // normal page load, do nothing
+function handleSubscribe() {
+  var btn     = document.getElementById('subscribeBtn');
+  var btnText = document.getElementById('subscribeBtnText');
+  var spinner = document.getElementById('subscribeSpinner');
+  var errBox  = document.getElementById('checkoutErrorBox');
 
-    // Clean URL immediately
+  btn.disabled          = true;
+  btnText.style.display = 'none';
+  spinner.style.display = 'block';
+  errBox.style.display  = 'none';
+
+  fetch(CONFIG.BACKEND_URL + '?action=create-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      priceId:         CONFIG.STRIPE_PRICE_ID,
+      businessName:    state.businessName,
+      businessPhone:   state.businessPhone,
+      email:           state.email,
+      stripeAccountId: state.stripeAccountId,
+      successUrl: window.location.origin + window.location.pathname + '?success=1&biz=' + encodeURIComponent(state.businessName),
+      cancelUrl:  window.location.href
+    })
+  })
+  .then(function(r) {
+    return r.text().then(function(text) {
+      var data = safeParseJSON(text);
+      if (!r.ok) throw new Error((data && data.error) ? data.error : text);
+      return data;
+    });
+  })
+  .then(function(data) {
+    if (data && data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error((data && data.error) ? data.error : 'No checkout URL returned');
+    }
+  })
+  .catch(function(err) {
+    btn.disabled          = false;
+    btnText.style.display = 'block';
+    spinner.style.display = 'none';
+    errBox.textContent    = 'Error: ' + err.message;
+    errBox.style.display  = 'block';
+  });
+}
+
+function checkSuccessCallback() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('success') === '1') {
+    var bizName = decodeURIComponent(params.get('biz') || 'Your business');
+    document.getElementById('successDesc').textContent = bizName + ' is now live on Tideline PAY. Text ' + CONFIG.TIDELINE_NUMBER + ' to send your first payment link.';
+    document.getElementById('stepsIndicator').style.display = 'none';
+    showPanel('panel-success');
     window.history.replaceState({}, '', window.location.pathname);
-
-    // Restore state
-    try {
-      var restored    = JSON.parse(atob(stateParam || ''));
-      state.businessName  = restored.businessName  || '';
-      state.businessPhone = restored.businessPhone || '';
-      state.email         = restored.email         || '';
-    } catch(e) {}
-
-    // Show step 2 while we call backend
-    updateStepIndicator(2);
-    showPanel('panel-2');
-    hideStripeError();
-
-    // Exchange code for token
-    fetch(CONFIG.BACKEND_URL + '?action=stripe-connect', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        code:          code,
-        businessName:  state.businessName,
-        businessPhone: state.businessPhone,
-        email:         state.email
-      })
-    })
-.then(function(r) {
-  return r.text().then(function(text) {
-    var data;
-    try {
-      data = JSON.parse(text);
-      // Handle double-encoded response
-      if (typeof data === 'string') { data = JSON.parse(data); }
-    } catch(e) { data = { raw: text }; }
-    if (!r.ok) throw new Error((data && data.error) ? data.error : text);
-    return data;
-  });
-})
-    .then(function(data) {
-      if (data && data.stripe_user_id) {
-        state.stripeConnected = true;
-        state.stripeAccountId = data.stripe_user_id;
-        document.getElementById('connectedBadge').classList.add('show');
-        document.getElementById('stripeConnectBtn').style.display = 'none';
-        document.getElementById('continueToPayBtn').disabled = false;
-      } else {
-        throw new Error('No stripe_user_id returned: ' + JSON.stringify(data));
-      }
-    })
-    .catch(function(err) {
-      showStripeError('Could not connect Stripe: ' + err.message);
-    });
   }
+}
 
-  // ── Subscribe ─────────────────────────────────────────────────────────────
-  function handleSubscribe() {
-    var btn     = document.getElementById('subscribeBtn');
-    var btnText = document.getElementById('subscribeBtnText');
-    var spinner = document.getElementById('subscribeSpinner');
-    btn.disabled = true;
-    btnText.style.display = 'none';
-    spinner.style.display = 'block';
-
-    fetch(CONFIG.BACKEND_URL + '?action=create-checkout', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        priceId:         CONFIG.STRIPE_PRICE_ID,
-        businessName:    state.businessName,
-        businessPhone:   state.businessPhone,
-        email:           state.email,
-        stripeAccountId: state.stripeAccountId,
-        successUrl: window.location.origin + window.location.pathname + '?success=1&biz=' + encodeURIComponent(state.businessName),
-        cancelUrl:  window.location.href
-      })
-    })
-.then(function(r) {
-  return r.text().then(function(text) {
-    var data;
-    try {
-      data = JSON.parse(text);
-      if (typeof data === 'string') { data = JSON.parse(data); }
-    } catch(e) { data = { raw: text }; }
-    if (!r.ok) throw new Error((data && data.error) ? data.error : text);
-    return data;
-  });
-})
-.then(function(data) {
-  if (data.url) {
-```
-
-That's the only change needed in GitHub. Update that one section, commit, wait 30 seconds, test again.
-
-Also — go to Twilio logs and confirm you see this line after the next attempt:
-```
-create-checkout key starts with: sk_live_
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'No checkout URL returned');
-      }
-    })
-    .catch(function(err) {
-      btn.disabled = false;
-      btnText.style.display = 'block';
-      spinner.style.display = 'none';
-      alert('Error: ' + err.message);
-    });
-  }
-
-  // ── Success callback ──────────────────────────────────────────────────────
-  function checkSuccessCallback() {
-    var params = new URLSearchParams(window.location.search);
-    if (params.get('success') === '1') {
-      var bizName = decodeURIComponent(params.get('biz') || 'Your business');
-      document.getElementById('successDesc').textContent =
-        bizName + ' is now live on Tideline PAY. Text ' + CONFIG.TIDELINE_NUMBER + ' to send your first payment link.';
-      document.getElementById('stepsIndicator').style.display = 'none';
-      showPanel('panel-success');
-      window.history.replaceState({}, '', window.location.pathname);
-    }
-  }
-
-  // ── Init ──────────────────────────────────────────────────────────────────
-  checkStripeCallback();
-  checkSuccessCallback();
+checkStripeCallback();
+checkSuccessCallback();
 </script>
 </body>
 </html>
