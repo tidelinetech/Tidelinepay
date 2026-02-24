@@ -1,1 +1,320 @@
 
+Index · HTML
+Copy
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideline Technologies — Messaging & Payments for Service Businesses</title>
+<meta name="description" content="Tideline Technologies builds messaging and payment tools that help service businesses respond faster and get paid faster.">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #0a1628;
+    --ocean-mid: #0d2545;
+    --ocean-bright: #1a56db;
+    --ocean-light: #3b82f6;
+    --gold: #d4a843;
+    --text: #f0f4f8;
+    --text-muted: #8bacc8;
+    --success: #22c55e;
+    --card-bg: rgba(13,37,69,0.6);
+    --border: rgba(26,86,219,0.2);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ocean-deep); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+  /* Background */
+  .bg {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% 80%, rgba(26,86,219,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(59,130,246,0.07) 0%, transparent 50%),
+      linear-gradient(180deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+  }
+  .grid {
+    position: fixed; inset: 0; z-index: 0;
+    background-image: linear-gradient(rgba(26,86,219,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .wave { position: fixed; bottom: 0; left: 0; width: 200%; height: 100px; opacity: 0.05; animation: wave 10s ease-in-out infinite; }
+  .wave-2 { animation: wave 14s ease-in-out infinite reverse; opacity: 0.03; bottom: 15px; }
+  @keyframes wave { 0%,100% { transform: translateX(0) translateY(0); } 50% { transform: translateX(-25%) translateY(-12px); } }
+
+  /* Nav */
+  nav {
+    position: relative; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 48px;
+    border-bottom: 1px solid rgba(26,86,219,0.1);
+    backdrop-filter: blur(10px);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .nav-logo-text { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--text); }
+  .nav-links { display: flex; align-items: center; gap: 32px; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: var(--ocean-bright); color: white; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .nav-cta:hover { background: var(--ocean-light); transform: translateY(-1px); }
+
+  /* Hero */
+  .hero {
+    position: relative; z-index: 10;
+    text-align: center;
+    padding: 100px 24px 80px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.25);
+    border-radius: 100px; padding: 6px 16px; margin-bottom: 32px;
+    font-size: 12px; font-weight: 600; color: var(--ocean-light);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(42px, 7vw, 72px);
+    font-weight: 400; line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--ocean-light); }
+  .hero p {
+    font-size: 18px; color: var(--text-muted); line-height: 1.7;
+    font-weight: 300; max-width: 520px; margin: 0 auto 48px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .btn-hero { background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light)); color: white; padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(26,86,219,0.4); }
+  .btn-hero-ghost { color: var(--text-muted); padding: 14px 28px; border-radius: 10px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid rgba(139,172,200,0.2); transition: all 0.2s; }
+  .btn-hero-ghost:hover { color: var(--text); border-color: rgba(139,172,200,0.4); }
+
+  /* Products */
+  .products {
+    position: relative; z-index: 10;
+    max-width: 1000px; margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+  .section-label {
+    text-align: center; margin-bottom: 48px;
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .product-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .product-card:hover { transform: translateY(-4px); border-color: rgba(26,86,219,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+  .product-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light));
+    border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 24px;
+  }
+  .product-card:nth-child(2) .product-icon { background: linear-gradient(135deg, #0d6d6e, #14b8a6); }
+  .product-tag {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ocean-light); margin-bottom: 8px;
+  }
+  .product-card:nth-child(2) .product-tag { color: #14b8a6; }
+  .product-card h2 { font-family: 'Instrument Serif', serif; font-size: 28px; font-weight: 400; margin-bottom: 12px; }
+  .product-card p { font-size: 15px; color: var(--text-muted); line-height: 1.6; margin-bottom: 28px; }
+  .product-features { list-style: none; margin-bottom: 32px; }
+  .product-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-muted); padding: 5px 0; }
+  .product-features li::before { content: '✓'; color: var(--ocean-light); font-weight: 700; font-size: 12px; flex-shrink: 0; }
+  .product-card:nth-child(2) .product-features li::before { color: #14b8a6; }
+  .product-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.3);
+    color: var(--ocean-light); padding: 12px 20px; border-radius: 10px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .product-card:nth-child(2) .product-cta { background: rgba(20,184,166,0.1); border-color: rgba(20,184,166,0.3); color: #14b8a6; }
+  .product-cta:hover { transform: translateX(3px); }
+
+  /* How it works */
+  .how {
+    position: relative; z-index: 10;
+    max-width: 800px; margin: 0 auto;
+    padding: 0 24px 100px;
+    text-align: center;
+  }
+  .how h2 { font-family: 'Instrument Serif', serif; font-size: clamp(32px, 5vw, 48px); font-weight: 400; margin-bottom: 16px; letter-spacing: -0.02em; }
+  .how > p { font-size: 16px; color: var(--text-muted); margin-bottom: 56px; }
+  .steps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .step-item { text-align: center; }
+  .step-num { width: 40px; height: 40px; background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--ocean-light); margin: 0 auto 16px; }
+  .step-item h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .step-item p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+  /* SMS Demo */
+  .demo {
+    position: relative; z-index: 10;
+    max-width: 480px; margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+  .demo-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 32px; backdrop-filter: blur(20px); }
+  .demo-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 20px; text-align: center; }
+  .sms-bubble { background: var(--ocean-bright); border-radius: 16px 16px 4px 16px; padding: 10px 14px; font-size: 14px; display: inline-block; margin-bottom: 10px; max-width: 220px; }
+  .sms-reply { background: rgba(255,255,255,0.07); border-radius: 16px 16px 16px 4px; padding: 10px 14px; font-size: 14px; display: inline-block; max-width: 280px; float: right; clear: both; color: var(--text-muted); }
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  /* Footer */
+  footer {
+    position: relative; z-index: 10;
+    border-top: 1px solid rgba(26,86,219,0.1);
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  }
+  .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .footer-logo-text { font-family: 'Instrument Serif', serif; font-size: 16px; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-compliance { font-size: 12px; color: var(--text-muted); opacity: 0.6; max-width: 600px; line-height: 1.5; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .products-grid { grid-template-columns: 1fr; }
+    .steps-row { grid-template-columns: 1fr; gap: 24px; }
+    footer { flex-direction: column; padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="grid"></div>
+<svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C240,90 480,10 720,50 C960,90 1200,10 1440,50 L1440,100 L0,100 Z" fill="#1a56db"/></svg>
+<svg class="wave wave-2" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,30 C360,70 720,0 1080,30 C1260,50 1380,20 1440,30 L1440,100 L0,100 Z" fill="#3b82f6"/></svg>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">⚓</div>
+    <div class="nav-logo-text">Tideline Technologies</div>
+  </a>
+  <div class="nav-links">
+    <a href="/pay">Tideline PAY</a>
+    <a href="/marina">Tideline Marinas</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </div>
+  <a class="nav-cta" href="/pay">Get Started</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">⚓ Tideline Technologies</div>
+  <h1>Messaging + payments<br>that help you <em>respond faster</em><br>and get paid faster</h1>
+  <p>Tideline Technologies builds messaging and payment tools that help service businesses respond faster and get paid faster.</p>
+  <div class="hero-actions">
+    <a class="btn-hero" href="/pay">Try Tideline PAY →</a>
+    <a class="btn-hero-ghost" href="/marina">Marina Software</a>
+  </div>
+</section>
+
+<section class="products">
+  <div class="section-label">Our Products</div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-icon">💳</div>
+      <div class="product-tag">Tideline PAY</div>
+      <h2>Send payment links by text</h2>
+      <p>Text PAY to send a secure Stripe checkout link to any customer. They pay instantly. You get paid faster.</p>
+      <ul class="product-features">
+        <li>Text PAY [number] [amount] — that's it</li>
+        <li>Secure Stripe checkout for customers</li>
+        <li>Funds go directly to your bank</li>
+        <li>Works for any service business</li>
+        <li>$24/month, cancel anytime</li>
+      </ul>
+      <a class="product-cta" href="/pay">Get started →</a>
+    </div>
+
+    <div class="product-card">
+      <div class="product-icon">⚓</div>
+      <div class="product-tag">Tideline Marinas</div>
+      <h2>Customer care for marinas</h2>
+      <p>After-hours intake, service scheduling, and automated customer messaging for marinas and boatyards.</p>
+      <ul class="product-features">
+        <li>After-hours customer intake</li>
+        <li>Service request scheduling</li>
+        <li>Automated FAQ responses</li>
+        <li>Slip reservation reminders</li>
+        <li>Pricing based on volume</li>
+      </ul>
+      <a class="product-cta" href="/marina">Learn more →</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="how">
+  <h2>Simple by design</h2>
+  <p>No apps to download. No complicated dashboards. Just tools that work.</p>
+  <div class="steps-row">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <h3>Sign up in minutes</h3>
+      <p>Connect your Stripe account and subscribe. You're live immediately.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <h3>Send a text</h3>
+      <p>Text PAY from your phone to send a payment link to any customer.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <h3>Get paid</h3>
+      <p>Customer pays via Stripe checkout. Money hits your bank account.</p>
+    </div>
+  </div>
+</section>
+
+<section class="demo">
+  <div class="demo-card">
+    <div class="demo-label">Tideline PAY in action</div>
+    <div class="sms-bubble">PAY 8605551234 275.00</div>
+    <div class="clearfix"></div><br>
+    <div class="sms-reply">✅ Payment link for $275.00 sent to +18605551234</div>
+    <div class="clearfix"></div>
+  </div>
+</section>
+
+<footer>
+  <a class="footer-logo" href="/">
+    <div class="nav-logo-mark" style="width:24px;height:24px;font-size:12px;">⚓</div>
+    <div class="footer-logo-text">Tideline Technologies LLC</div>
+  </a>
+  <div class="footer-links">
+    <a href="/pay">Tideline PAY</a>
+    <a href="/marina">Marinas</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms of Service</a>
+    <a href="mailto:jack@tidelinetech.com">Contact</a>
+  </div>
+  <div class="footer-compliance">
+    Message frequency varies. Message & data rates may apply. Text STOP to opt out, HELP for help.
+    <a href="/privacy" style="color:inherit;">Privacy Policy</a> · <a href="/terms" style="color:inherit;">Terms of Service</a>
+  </div>
+</footer>
+</body>
+</html>
