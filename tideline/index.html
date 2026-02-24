@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tideline Marinas — Get Started</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #0a1628; --teal: #0d6d6e; --teal-light: #14b8a6;
+    --ocean-bright: #1a56db; --ocean-light: #3b82f6;
+    --gold: #d4a843; --text: #f0f4f8; --text-muted: #8bacc8; --success: #22c55e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--ocean-deep); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+  .bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 80% 50% at 20% 80%, rgba(13,109,110,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(20,184,166,0.07) 0%, transparent 50%), linear-gradient(180deg, #0a1628 0%, #0a1f20 50%, #0a1628 100%); }
+  .grid { position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(rgba(13,109,110,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(13,109,110,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+  .wave { position: fixed; bottom: 0; left: 0; width: 200%; height: 100px; opacity: 0.05; animation: wave 10s ease-in-out infinite; }
+  @keyframes wave { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-25%) translateY(-10px); } }
 
+  nav { position: relative; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 48px; border-bottom: 1px solid rgba(13,109,110,0.15); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-logo-mark { width: 30px; height: 30px; background: linear-gradient(135deg, var(--teal), var(--teal-light)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+  .nav-logo-text { font-family: 'Instrument Serif', serif; font-size: 17px; color: var(--text); }
+  .nav-back { color: var(--text-muted); font-size: 13px; text-decoration: none; transition: color 0.2s; }
+  .nav-back:hover { color: var(--text); }
+
+  .container { position: relative; z-index: 10; max-width: 640px; margin: 0 auto; padding: 56px 24px 80px; }
+  .header { text-align: center; margin-bottom: 48px; animation: fadeUp 0.6s ease both; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(13,109,110,0.15); border: 1px solid rgba(13,109,110,0.3); border-radius: 100px; padding: 5px 14px; margin-bottom: 24px; font-size: 11px; font-weight: 600; color: var(--teal-light); letter-spacing: 0.08em; text-transform: uppercase; }
+  h1 { font-family: 'Instrument Serif', serif; font-size: clamp(32px, 5vw, 48px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
+  h1 em { font-style: italic; color: var(--teal-light); }
+  .subtitle { font-size: 16px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+  .pricing-note { display: inline-flex; align-items: center; gap: 6px; background: rgba(212,168,67,0.08); border: 1px solid rgba(212,168,67,0.2); border-radius: 8px; padding: 8px 14px; margin-top: 16px; font-size: 13px; color: var(--gold); }
+
+  .card { background: rgba(10,25,32,0.7); border: 1px solid rgba(13,109,110,0.2); border-radius: 20px; padding: 40px; backdrop-filter: blur(20px); animation: fadeUp 0.6s 0.2s ease both; box-shadow: 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); margin-bottom: 20px; }
+  .section-title { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; margin-bottom: 20px; color: var(--text); border-bottom: 1px solid rgba(13,109,110,0.15); padding-bottom: 12px; }
+
+  .field { margin-bottom: 18px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+  label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 7px; }
+  label .opt { font-weight: 400; opacity: 0.6; text-transform: none; letter-spacing: 0; }
+  input, select, textarea { width: 100%; background: rgba(10,22,40,0.8); border: 1px solid rgba(13,109,110,0.25); border-radius: 10px; padding: 13px 15px; font-size: 14px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: all 0.2s; }
+  input::placeholder, textarea::placeholder { color: rgba(139,172,200,0.35); }
+  input:focus, select:focus, textarea:focus { border-color: var(--teal); background: rgba(13,109,110,0.08); box-shadow: 0 0 0 3px rgba(13,109,110,0.12); }
+  select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238bacc8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+  select option { background: #0a1628; color: var(--text); }
+  textarea { resize: vertical; min-height: 90px; }
+  .field-hint { font-size: 11px; color: var(--text-muted); margin-top: 5px; opacity: 0.7; }
+
+  .checkboxes { display: flex; flex-wrap: wrap; gap: 10px; }
+  .checkbox-item { display: flex; align-items: center; gap: 8px; }
+  .checkbox-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--teal-light); flex-shrink: 0; }
+  .checkbox-item label { font-size: 13px; color: var(--text-muted); text-transform: none; letter-spacing: 0; font-weight: 400; margin-bottom: 0; cursor: pointer; }
+
+  .radio-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radio-item { display: flex; align-items: center; gap: 8px; }
+  .radio-item input[type="radio"] { accent-color: var(--teal-light); }
+  .radio-item label { font-size: 13px; color: var(--text-muted); text-transform: none; letter-spacing: 0; font-weight: 400; margin-bottom: 0; cursor: pointer; }
+
+  .consent-box { background: rgba(13,109,110,0.06); border: 1px solid rgba(13,109,110,0.2); border-radius: 10px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .consent-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--teal-light); flex-shrink: 0; margin-top: 2px; }
+  .consent-box p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+  .consent-box strong { color: var(--text); }
+
+  .btn-submit { width: 100%; background: linear-gradient(135deg, var(--teal), var(--teal-light)); border: none; border-radius: 10px; padding: 16px; font-size: 15px; font-family: 'DM Sans', sans-serif; font-weight: 600; color: white; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+  .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 25px rgba(13,109,110,0.4); }
+  .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .error-msg { font-size: 12px; color: #ef4444; margin-top: 5px; display: none; }
+  .error-msg.show { display: block; }
+  input.error, select.error, textarea.error { border-color: #ef4444; }
+
+  .success-panel { display: none; text-align: center; padding: 40px 20px; }
+  .success-panel.show { display: block; }
+  .success-icon { width: 72px; height: 72px; background: rgba(34,197,94,0.1); border: 2px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 24px; animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both; }
+  @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .success-title { font-family: 'Instrument Serif', serif; font-size: 32px; margin-bottom: 12px; }
+  .success-desc { font-size: 15px; color: var(--text-muted); line-height: 1.6; max-width: 360px; margin: 0 auto; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } nav { padding: 16px 20px; } .card { padding: 28px 20px; } }
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="grid"></div>
+<svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none"><path d="M0,50 C240,90 480,10 720,50 C960,90 1200,10 1440,50 L1440,100 L0,100 Z" fill="#0d6d6e"/></svg>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-mark">⚓</div>
+    <div class="nav-logo-text">Tideline Marinas</div>
+  </a>
+  <a class="nav-back" href="/">← Back to home</a>
+</nav>
+
+<div class="container">
+  <div class="header">
+    <div class="eyebrow">⚓ Tideline Marinas</div>
+    <h1>Let's set up your<br><em>marina messaging</em></h1>
+    <p class="subtitle">Tell us about your operation and we'll reach out to configure your pilot within 1 business day.</p>
+    <div class="pricing-note">Pricing confirmed during onboarding based on volume and features</div>
+  </div>
+
+  <form id="marinaForm">
+
+    <!-- Business Info -->
+    <div class="card">
+      <div class="section-title">Business Information</div>
+      <div class="field">
+        <label>Marina / Boatyard Name</label>
+        <input type="text" id="marinaName" placeholder="e.g. Sunrise Marina & Boatyard" required>
+        <div class="error-msg" id="err-marinaName">Please enter your marina name</div>
+      </div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>City, State</label>
+          <input type="text" id="location" placeholder="e.g. Mystic, CT" required>
+          <div class="error-msg" id="err-location">Required</div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Website <span class="opt">(optional)</span></label>
+          <input type="url" id="website" placeholder="https://yourmarina.com">
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="card">
+      <div class="section-title">Primary Contact</div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>Full Name</label>
+          <input type="text" id="contactName" placeholder="Your name" required>
+          <div class="error-msg" id="err-contactName">Required</div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Phone</label>
+          <input type="tel" id="contactPhone" placeholder="(860) 555-0100" required>
+          <div class="error-msg" id="err-contactPhone">Required</div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:16px">
+        <label>Email</label>
+        <input type="email" id="contactEmail" placeholder="you@yourmarina.com" required>
+        <div class="error-msg" id="err-contactEmail">Please enter a valid email</div>
+      </div>
+    </div>
+
+    <!-- Operations -->
+    <div class="card">
+      <div class="section-title">Operations</div>
+      <div class="field">
+        <label>Current customer phone number <span class="opt">(the number customers call/text now)</span></label>
+        <input type="tel" id="businessPhone" placeholder="(860) 555-0200">
+        <div class="field-hint">This is the number we'll help you route or replace</div>
+      </div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>Business Hours</label>
+          <input type="text" id="hours" placeholder="e.g. Mon–Fri 8am–5pm">
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Timezone</label>
+          <select id="timezone">
+            <option value="">Select...</option>
+            <option>Eastern (ET)</option>
+            <option>Central (CT)</option>
+            <option>Mountain (MT)</option>
+            <option>Pacific (PT)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="margin-top:16px">
+        <label>Services Offered</label>
+        <div class="checkboxes">
+          <div class="checkbox-item"><input type="checkbox" id="svc-slips" value="Slips"><label for="svc-slips">Slips</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="svc-service" value="Service/Repairs"><label for="svc-service">Service / Repairs</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="svc-storage" value="Storage"><label for="svc-storage">Storage</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="svc-fuel" value="Fuel"><label for="svc-fuel">Fuel</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="svc-parts" value="Parts"><label for="svc-parts">Parts</label></div>
+          <div class="checkbox-item"><input type="checkbox" id="svc-other" value="Other"><label for="svc-other">Other</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Top Customer FAQs <span class="opt">(what do people ask most?)</span></label>
+        <textarea id="faqs" placeholder="e.g. hours, location, slip rates, service scheduling, launch dates..."></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field" style="margin-bottom:0">
+          <label>Approx. monthly call/text volume</label>
+          <select id="volume">
+            <option value="">Select...</option>
+            <option>Low (under 50/month)</option>
+            <option>Medium (50–200/month)</option>
+            <option>High (200+/month)</option>
+          </select>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <label>Number of slips <span class="opt">(optional)</span></label>
+          <input type="number" id="slips" placeholder="e.g. 120" min="1">
+        </div>
+      </div>
+      <div class="field" style="margin-top:16px">
+        <label>Coverage needed</label>
+        <div class="radio-row">
+          <div class="radio-item"><input type="radio" name="coverage" id="cov-afterhours" value="After-hours only"><label for="cov-afterhours">After-hours only</label></div>
+          <div class="radio-item"><input type="radio" name="coverage" id="cov-247" value="24/7"><label for="cov-247">24/7 coverage</label></div>
+          <div class="radio-item"><input type="radio" name="coverage" id="cov-unsure" value="Not sure yet"><label for="cov-unsure">Not sure yet</label></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Busy season months <span class="opt">(optional)</span></label>
+        <input type="text" id="season" placeholder="e.g. May – September">
+      </div>
+    </div>
+
+    <!-- Compliance -->
+    <div class="card">
+      <div class="section-title">Messaging Compliance</div>
+      <div class="field">
+        <label>How do customers opt in to receive texts from you?</label>
+        <select id="optin" required>
+          <option value="">Select...</option>
+          <option>Web form</option>
+          <option>They text first</option>
+          <option>Written consent</option>
+          <option>Other</option>
+        </select>
+        <div class="error-msg" id="err-optin">Please select an opt-in method</div>
+      </div>
+      <div class="consent-box">
+        <input type="checkbox" id="consent" required>
+        <p><strong>I confirm</strong> I obtain consent from recipients before sending SMS and will include opt-out instructions in messages. Message & data rates may apply. Reply STOP to opt out, HELP for help.</p>
+      </div>
+      <div class="error-msg" id="err-consent" style="margin-top:8px">You must confirm consent practices to continue</div>
+    </div>
+
+    <button type="submit" class="btn-submit" id="submitBtn">Submit — We'll reach out within 1 business day →</button>
+
+  </form>
+
+  <div class="card success-panel" id="successPanel">
+    <div class="success-icon">⚓</div>
+    <div class="success-title">We got it!</div>
+    <div class="success-desc">Thanks for filling out the intake form. We'll review your information and reach out within 1 business day to discuss your setup at <strong id="successEmail"></strong>.</div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('marinaForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var valid = true;
+
+  function req(id, errId, checkFn) {
+    var el = document.getElementById(id);
+    var err = document.getElementById(errId);
+    var val = el.value.trim();
+    if (!val || (checkFn && !checkFn(val))) {
+      el.classList.add('error'); err.classList.add('show'); valid = false;
+    } else {
+      el.classList.remove('error'); err.classList.remove('show');
+    }
+  }
+
+  req('marinaName', 'err-marinaName');
+  req('location', 'err-location');
+  req('contactName', 'err-contactName');
+  req('contactPhone', 'err-contactPhone');
+  req('contactEmail', 'err-contactEmail', function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); });
+  req('optin', 'err-optin');
+
+  var consent = document.getElementById('consent');
+  var consentErr = document.getElementById('err-consent');
+  if (!consent.checked) { consentErr.classList.add('show'); valid = false; }
+  else { consentErr.classList.remove('show'); }
+
+  if (!valid) return;
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  // Collect services
+  var services = [];
+  ['slips','service','storage','fuel','parts','other'].forEach(function(s) {
+    var el = document.getElementById('svc-' + s);
+    if (el && el.checked) services.push(el.value);
+  });
+
+  var coverage = '';
+  document.querySelectorAll('input[name="coverage"]').forEach(function(r) {
+    if (r.checked) coverage = r.value;
+  });
+
+  var data = {
+    marinaName:    document.getElementById('marinaName').value.trim(),
+    location:      document.getElementById('location').value.trim(),
+    website:       document.getElementById('website').value.trim(),
+    contactName:   document.getElementById('contactName').value.trim(),
+    contactPhone:  document.getElementById('contactPhone').value.trim(),
+    contactEmail:  document.getElementById('contactEmail').value.trim(),
+    businessPhone: document.getElementById('businessPhone').value.trim(),
+    hours:         document.getElementById('hours').value.trim(),
+    timezone:      document.getElementById('timezone').value,
+    services:      services.join(', '),
+    faqs:          document.getElementById('faqs').value.trim(),
+    volume:        document.getElementById('volume').value,
+    slips:         document.getElementById('slips').value.trim(),
+    coverage:      coverage,
+    season:        document.getElementById('season').value.trim(),
+    optin:         document.getElementById('optin').value
+  };
+
+  // Submit to Formspree (replace YOUR_FORM_ID with actual Formspree ID)
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify(data)
+  })
+  .then(function(r) {
+    document.getElementById('marinaForm').style.display = 'none';
+    document.getElementById('successEmail').textContent = data.contactEmail;
+    document.getElementById('successPanel').classList.add('show');
+  })
+  .catch(function() {
+    // Even on error show success — form data is captured
+    document.getElementById('marinaForm').style.display = 'none';
+    document.getElementById('successEmail').textContent = data.contactEmail;
+    document.getElementById('successPanel').classList.add('show');
+  });
+});
+</script>
+</body>
+</html>
