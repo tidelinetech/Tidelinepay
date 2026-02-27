@@ -33,45 +33,15 @@
   .subtitle { font-size: 16px; color: var(--text-muted); line-height: 1.6; font-weight: 300; max-width: 400px; margin: 0 auto; }
 
   /* How it works strip */
-  .how-it-works {
-    position: relative; z-index: 10;
-    margin-bottom: 44px;
-    animation: fadeUp 0.6s 0.08s ease both;
-  }
-  .how-label {
-    text-align: center; font-size: 11px; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-muted); margin-bottom: 16px; opacity: 0.7;
-  }
-  .how-steps {
-    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr;
-    align-items: center; gap: 8px;
-  }
-  .how-step {
-    background: rgba(13,37,69,0.5);
-    border: 1px solid rgba(26,86,219,0.18);
-    border-radius: 12px; padding: 16px 14px;
-    text-align: center;
-  }
-  .how-step-num {
-    width: 24px; height: 24px;
-    background: rgba(26,86,219,0.2); border: 1px solid rgba(26,86,219,0.3);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 11px; font-weight: 700; color: var(--ocean-light);
-    margin: 0 auto 10px;
-  }
+  .how-it-works { position: relative; z-index: 10; margin-bottom: 44px; animation: fadeUp 0.6s 0.08s ease both; }
+  .how-label { text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; opacity: 0.7; }
+  .how-steps { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 8px; }
+  .how-step { background: rgba(13,37,69,0.5); border: 1px solid rgba(26,86,219,0.18); border-radius: 12px; padding: 16px 14px; text-align: center; }
+  .how-step-num { width: 24px; height: 24px; background: rgba(26,86,219,0.2); border: 1px solid rgba(26,86,219,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--ocean-light); margin: 0 auto 10px; }
   .how-step-title { font-size: 13px; font-weight: 600; margin-bottom: 5px; }
   .how-step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
-  .how-step-code {
-    display: inline-block;
-    background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.25);
-    border-radius: 6px; padding: 4px 10px; margin-top: 6px;
-    font-size: 12px; font-weight: 600; color: var(--ocean-light);
-    font-family: monospace; letter-spacing: 0.02em;
-  }
-  .how-arrow {
-    color: rgba(139,172,200,0.3); font-size: 18px; flex-shrink: 0; text-align: center;
-  }
+  .how-step-code { display: inline-block; background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.25); border-radius: 6px; padding: 4px 10px; margin-top: 6px; font-size: 12px; font-weight: 600; color: var(--ocean-light); font-family: monospace; letter-spacing: 0.02em; }
+  .how-arrow { color: rgba(139,172,200,0.3); font-size: 18px; flex-shrink: 0; text-align: center; }
 
   .steps { display: flex; align-items: center; justify-content: center; margin-bottom: 48px; animation: fadeUp 0.6s 0.1s ease both; }
   .step { display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -90,9 +60,9 @@
   .card-desc { font-size: 14px; color: var(--text-muted); margin-bottom: 32px; line-height: 1.5; }
   .field { margin-bottom: 20px; }
   label { display: block; font-size: 13px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 8px; }
-  input { width: 100%; background: rgba(10,22,40,0.8); border: 1px solid rgba(26,86,219,0.25); border-radius: 10px; padding: 14px 16px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: all 0.2s ease; }
-  input::placeholder { color: rgba(139,172,200,0.4); }
-  input:focus { border-color: var(--ocean-bright); background: rgba(26,86,219,0.08); box-shadow: 0 0 0 3px rgba(26,86,219,0.15); }
+  input[type="text"], input[type="tel"], input[type="email"] { width: 100%; background: rgba(10,22,40,0.8); border: 1px solid rgba(26,86,219,0.25); border-radius: 10px; padding: 14px 16px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--text); outline: none; transition: all 0.2s ease; }
+  input[type="text"]::placeholder, input[type="tel"]::placeholder, input[type="email"]::placeholder { color: rgba(139,172,200,0.4); }
+  input[type="text"]:focus, input[type="tel"]:focus, input[type="email"]:focus { border-color: var(--ocean-bright); background: rgba(26,86,219,0.08); box-shadow: 0 0 0 3px rgba(26,86,219,0.15); }
   input.error { border-color: #ef4444; }
   .field-hint { font-size: 12px; color: var(--text-muted); margin-top: 6px; opacity: 0.7; }
   .pricing-pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(212,168,67,0.1); border: 1px solid rgba(212,168,67,0.3); border-radius: 100px; padding: 8px 16px; margin-bottom: 28px; font-size: 13px; color: var(--gold); font-weight: 500; }
@@ -126,6 +96,19 @@
   .sms-reply { background: rgba(255,255,255,0.07); border-radius: 16px 16px 16px 4px; padding: 10px 14px; font-size: 14px; display: inline-block; max-width: 280px; float: right; clear: both; color: var(--text-muted); }
   .clearfix::after { content: ''; display: table; clear: both; }
   .secure-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: var(--text-muted); opacity: 0.6; margin-top: 20px; }
+
+  /* Consent box */
+  .consent-box {
+    background: rgba(26,86,219,0.06); border: 1px solid rgba(26,86,219,0.2);
+    border-radius: 10px; padding: 16px; display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .consent-box input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--ocean-bright); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+  .consent-box p { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
+  .consent-box strong { color: var(--text); }
+  .consent-box a { color: var(--ocean-light); text-decoration: none; }
+  .consent-box a:hover { text-decoration: underline; }
+
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   @media (max-width: 480px) {
     .card { padding: 28px 20px; }
@@ -221,6 +204,14 @@
         <input type="email" id="email" placeholder="you@yourbusiness.com" autocomplete="email">
         <div class="error-msg" id="err-email">Please enter a valid email</div>
       </div>
+
+      <!-- Consent -->
+      <div class="consent-box">
+        <input type="checkbox" id="smsConsent">
+        <p><strong>I confirm</strong> that I will only send payment links to customers who have provided their phone number and consented to receive SMS messages from my business. I understand that customers can reply <strong>STOP</strong> to opt out at any time. Message &amp; data rates may apply. See <a href="/privacy/" target="_blank">Privacy Policy</a> and <a href="/terms/" target="_blank">Terms of Service</a>.</p>
+      </div>
+      <div class="error-msg" id="err-consent" style="margin-bottom:14px;">You must confirm consent practices to continue</div>
+
       <button class="btn-primary" onclick="goToStep2()">Continue →</button>
     </div>
 
@@ -349,6 +340,7 @@ function goToStep2() {
   var name  = document.getElementById('businessName').value.trim();
   var phone = document.getElementById('businessPhone').value.trim();
   var email = document.getElementById('email').value.trim();
+  var consent = document.getElementById('smsConsent').checked;
   var valid = true;
 
   if (!name) {
@@ -377,6 +369,13 @@ function goToStep2() {
   } else {
     document.getElementById('email').classList.remove('error');
     document.getElementById('err-email').classList.remove('show');
+  }
+
+  if (!consent) {
+    document.getElementById('err-consent').classList.add('show');
+    valid = false;
+  } else {
+    document.getElementById('err-consent').classList.remove('show');
   }
 
   if (!valid) return;
