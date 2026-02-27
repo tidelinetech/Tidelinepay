@@ -26,31 +26,12 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { font-family: 'DM Sans', sans-serif; background: var(--deep); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-
-  .bg {
-    position: fixed; inset: 0; z-index: 0;
-    background:
-      radial-gradient(ellipse 70% 50% at 10% 90%, rgba(26,86,219,0.1) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 40% at 90% 10%, rgba(13,109,110,0.1) 0%, transparent 50%),
-      linear-gradient(160deg, #060d1a 0%, #080f1e 45%, #060d1a 100%);
-  }
-  .grid {
-    position: fixed; inset: 0; z-index: 0;
-    background-image: linear-gradient(rgba(26,86,219,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.025) 1px, transparent 1px);
-    background-size: 64px 64px;
-  }
+  .bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 10% 90%, rgba(26,86,219,0.1) 0%, transparent 55%), radial-gradient(ellipse 60% 40% at 90% 10%, rgba(13,109,110,0.1) 0%, transparent 50%), linear-gradient(160deg, #060d1a 0%, #080f1e 45%, #060d1a 100%); }
+  .grid { position: fixed; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.025) 1px, transparent 1px); background-size: 64px 64px; }
   .wave { position: fixed; bottom: 0; left: 0; width: 200%; height: 90px; opacity: 0.05; animation: waveAnim 11s ease-in-out infinite; }
   .wave-2 { opacity: 0.03; bottom: 12px; animation: waveAnim 16s ease-in-out infinite reverse; }
   @keyframes waveAnim { 0%,100%{transform:translateX(0) translateY(0)} 50%{transform:translateX(-22%) translateY(-10px)} }
-
-  /* Nav */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 48px;
-    background: rgba(6,13,26,0.92); backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(26,86,219,0.1);
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(6,13,26,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(26,86,219,0.1); }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo-mark { width: 30px; height: 30px; background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
   .nav-logo-text { font-family: 'Instrument Serif', serif; font-size: 17px; color: var(--text); }
@@ -59,102 +40,33 @@
   .nav-links a:hover { color: var(--text); }
   .nav-cta { background: var(--ocean-bright); color: white; padding: 8px 18px; border-radius: 7px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
   .nav-cta:hover { background: var(--ocean-light); }
-
-  /* Hero */
-  .hero {
-    position: relative; z-index: 10;
-    text-align: center;
-    padding: 140px 24px 72px;
-    max-width: 780px; margin: 0 auto;
-  }
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(26,86,219,0.08); border: 1px solid rgba(26,86,219,0.2);
-    border-radius: 100px; padding: 5px 16px; margin-bottom: 28px;
-    font-size: 11px; font-weight: 600; color: var(--ocean-light);
-    letter-spacing: 0.09em; text-transform: uppercase;
-    animation: fadeUp 0.5s ease both;
-  }
-  .hero h1 {
-    font-family: 'Instrument Serif', serif;
-    font-size: clamp(40px, 7vw, 68px);
-    font-weight: 400; line-height: 1.06;
-    letter-spacing: -0.03em; margin-bottom: 22px;
-    animation: fadeUp 0.5s 0.08s ease both;
-  }
+  .hero { position: relative; z-index: 10; text-align: center; padding: 140px 24px 72px; max-width: 780px; margin: 0 auto; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(26,86,219,0.08); border: 1px solid rgba(26,86,219,0.2); border-radius: 100px; padding: 5px 16px; margin-bottom: 28px; font-size: 11px; font-weight: 600; color: var(--ocean-light); letter-spacing: 0.09em; text-transform: uppercase; animation: fadeUp 0.5s ease both; }
+  .hero h1 { font-family: 'Instrument Serif', serif; font-size: clamp(40px, 7vw, 68px); font-weight: 400; line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 22px; animation: fadeUp 0.5s 0.08s ease both; }
   .hero h1 em { font-style: italic; }
   .hero h1 .blue { color: var(--ocean-light); }
-  .hero h1 .teal { color: var(--teal-bright); }
-  .hero-sub {
-    font-size: 17px; color: var(--text-muted); line-height: 1.7;
-    font-weight: 300; max-width: 500px; margin: 0 auto 36px;
-    animation: fadeUp 0.5s 0.16s ease both;
-  }
-  .hero-actions {
-    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
-    animation: fadeUp 0.5s 0.22s ease both;
-  }
-  .btn-pay {
-    background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light));
-    color: white; padding: 14px 26px; border-radius: 10px;
-    font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s;
-    display: flex; align-items: center; gap: 8px;
-  }
+  .hero-sub { font-size: 17px; color: var(--text-muted); line-height: 1.7; font-weight: 300; max-width: 500px; margin: 0 auto 36px; animation: fadeUp 0.5s 0.16s ease both; }
+  .hero-actions { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.5s 0.22s ease both; }
+  .btn-pay { background: linear-gradient(135deg, var(--ocean-bright), var(--ocean-light)); color: white; padding: 14px 26px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
   .btn-pay:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,86,219,0.4); }
-  .btn-marina {
-    background: linear-gradient(135deg, var(--teal), var(--teal-light));
-    color: white; padding: 14px 26px; border-radius: 10px;
-    font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s;
-    display: flex; align-items: center; gap: 8px;
-  }
+  .btn-marina { background: linear-gradient(135deg, var(--teal), var(--teal-light)); color: white; padding: 14px 26px; border-radius: 10px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
   .btn-marina:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,109,110,0.4); }
-
-  /* Two products split */
-  .split {
-    position: relative; z-index: 10;
-    max-width: 1040px; margin: 0 auto;
-    padding: 0 24px 80px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    animation: fadeUp 0.5s 0.28s ease both;
-  }
-
-  .product-half {
-    border-radius: 22px; overflow: hidden;
-    border: 1px solid var(--border-pay);
-    background: var(--card-pay);
-    backdrop-filter: blur(20px);
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04);
-  }
+  .split { position: relative; z-index: 10; max-width: 1040px; margin: 0 auto; padding: 0 24px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; animation: fadeUp 0.5s 0.28s ease both; }
+  .product-half { border-radius: 22px; overflow: hidden; border: 1px solid var(--border-pay); background: var(--card-pay); backdrop-filter: blur(20px); transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); }
   .product-half:nth-child(2) { border-color: var(--border-marina); background: var(--card-marina); }
   .product-half:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
-
   .product-top { padding: 36px 36px 0; }
-  .product-tag {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase;
-    color: var(--ocean-light); margin-bottom: 6px;
-    display: flex; align-items: center; gap: 7px;
-  }
+  .product-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ocean-light); margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
   .product-half:nth-child(2) .product-tag { color: var(--teal-bright); }
   .product-tag-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ocean-light); }
   .product-half:nth-child(2) .product-tag-dot { background: var(--teal-bright); }
-  .product-half h2 {
-    font-family: 'Instrument Serif', serif;
-    font-size: 26px; font-weight: 400; margin-bottom: 12px; line-height: 1.2;
-  }
+  .product-half h2 { font-family: 'Instrument Serif', serif; font-size: 26px; font-weight: 400; margin-bottom: 12px; line-height: 1.2; }
   .product-half > .product-top > p { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
-
   .product-features { list-style: none; margin-bottom: 28px; }
   .product-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-muted); padding: 5px 0; line-height: 1.45; }
   .product-features li .check { color: var(--ocean-light); font-weight: 700; font-size: 11px; flex-shrink: 0; margin-top: 2px; }
   .product-half:nth-child(2) .product-features li .check { color: var(--teal-bright); }
-
-  /* Demo bubbles inside card */
-  .product-demo {
-    margin: 0 36px 0;
-    background: rgba(0,0,0,0.25); border-radius: 12px;
-    padding: 18px; border: 1px solid rgba(255,255,255,0.05);
-  }
+  .product-demo { margin: 0 36px 0; background: rgba(0,0,0,0.25); border-radius: 12px; padding: 18px; border: 1px solid rgba(255,255,255,0.05); }
   .demo-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); opacity: 0.55; margin-bottom: 12px; }
   .sms-out { background: var(--ocean-bright); border-radius: 14px 14px 3px 14px; padding: 9px 13px; font-size: 12px; display: inline-block; max-width: 85%; line-height: 1.45; margin-bottom: 7px; font-weight: 500; }
   .product-half:nth-child(2) .sms-out { background: var(--teal); }
@@ -162,72 +74,23 @@
   .sms-sys { text-align: center; font-size: 10px; color: var(--text-muted); opacity: 0.4; padding: 4px 0; }
   .sms-result { text-align: center; margin-top: 8px; font-size: 12px; color: var(--success); font-weight: 600; }
   .cf::after { content:''; display:table; clear:both; }
-
   .product-cta-row { padding: 24px 36px 32px; }
-  .product-link {
-    display: inline-flex; align-items: center; gap: 7px;
-    padding: 11px 18px; border-radius: 9px; font-size: 13px; font-weight: 600;
-    text-decoration: none; transition: all 0.2s;
-    background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.25); color: var(--ocean-light);
-  }
+  .product-link { display: inline-flex; align-items: center; gap: 7px; padding: 11px 18px; border-radius: 9px; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.25); color: var(--ocean-light); }
   .product-half:nth-child(2) .product-link { background: rgba(20,184,166,0.1); border-color: rgba(20,184,166,0.25); color: var(--teal-bright); }
   .product-link:hover { transform: translateX(3px); }
   .price-note { display: inline-block; margin-left: 12px; font-size: 12px; color: var(--text-muted); }
-
-  /* Who it's for strip */
-  .for-strip {
-    position: relative; z-index: 10;
-    max-width: 1040px; margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-  .for-strip-label { text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 24px; opacity: 0.7; }
-  .for-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
-  .for-item {
-    background: rgba(13,37,69,0.4); border: 1px solid rgba(26,86,219,0.12);
-    border-radius: 10px; padding: 16px 12px; text-align: center;
-    font-size: 12px; color: var(--text-muted); line-height: 1.4;
-  }
-  .for-item .icon { font-size: 20px; margin-bottom: 7px; }
-  .for-item.marina-type { border-color: rgba(20,184,166,0.12); }
-
-  /* Simple steps */
-  .simple {
-    position: relative; z-index: 10;
-    max-width: 700px; margin: 0 auto;
-    padding: 0 24px 100px; text-align: center;
-  }
+  .simple { position: relative; z-index: 10; max-width: 700px; margin: 0 auto; padding: 0 24px 100px; text-align: center; }
   .simple h2 { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 12px; }
   .simple > p { font-size: 15px; color: var(--text-muted); margin-bottom: 48px; }
-  .steps-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
-  .step-item { text-align: center; }
-  .step-num { width: 38px; height: 38px; background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--ocean-light); margin: 0 auto 14px; }
-  .step-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 7px; }
-  .step-item p { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
-
-  /* Footer */
-  footer {
-    position: relative; z-index: 10;
-    border-top: 1px solid rgba(26,86,219,0.1);
-    padding: 36px 48px;
-    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
-  }
+  footer { position: relative; z-index: 10; border-top: 1px solid rgba(26,86,219,0.1); padding: 36px 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
   .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
   .footer-logo-text { font-family: 'Instrument Serif', serif; font-size: 15px; color: var(--text-muted); }
   .footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
   .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 12px; transition: color 0.2s; }
   .footer-links a:hover { color: var(--text); }
   .footer-compliance { font-size: 11px; color: var(--text-muted); opacity: 0.5; max-width: 580px; line-height: 1.5; }
-
   @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
-    .nav-links { display: none; }
-    .split { grid-template-columns: 1fr; }
-    .for-grid { grid-template-columns: repeat(3, 1fr); }
-    .steps-row { grid-template-columns: 1fr; gap: 20px; }
-    footer { flex-direction: column; padding: 28px 20px; }
-    .hero { padding-top: 110px; }
-  }
+  @media (max-width: 768px) { nav { padding: 14px 20px; } .nav-links { display: none; } .split { grid-template-columns: 1fr; } footer { flex-direction: column; padding: 28px 20px; } .hero { padding-top: 110px; } }
 </style>
 </head>
 <body>
@@ -250,7 +113,6 @@
   <a class="nav-cta" href="/">Get Started</a>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-eyebrow">⚓ Tideline Technologies</div>
   <h1>Never miss a booking.<br><em class="blue">Get paid</em> by text.</h1>
@@ -261,10 +123,7 @@
   </div>
 </section>
 
-<!-- Two products -->
 <section class="split">
-
-  <!-- PAY -->
   <div class="product-half">
     <div class="product-top">
       <div class="product-tag"><div class="product-tag-dot"></div>Tideline PAY</div>
@@ -293,7 +152,6 @@
     </div>
   </div>
 
-  <!-- Marinas -->
   <div class="product-half">
     <div class="product-top">
       <div class="product-tag"><div class="product-tag-dot"></div>Tideline Marinas</div>
@@ -322,16 +180,13 @@
       <span class="price-note">Pricing based on volume</span>
     </div>
   </div>
-
 </section>
 
-<!-- Simple -->
 <section class="simple">
   <h2>No apps. No downloads.<br>Live in 24 hours.</h2>
   <p>Both products are up and running the same day. No software to install, no staff to train.</p>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:left;margin-top:8px;">
-
     <div style="background:rgba(13,37,69,0.5);border:1px solid rgba(26,86,219,0.18);border-radius:14px;padding:28px;">
       <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--ocean-light);margin-bottom:16px;">Tideline PAY</div>
       <div style="display:flex;flex-direction:column;gap:14px;">
@@ -340,7 +195,7 @@
           <div><div style="font-size:13px;font-weight:600;margin-bottom:3px;">Connect Stripe</div><div style="font-size:12px;color:var(--text-muted);line-height:1.5;">Sign up and link your Stripe account in under 5 minutes.</div></div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;">
-          <div style="width:22px;height:22px;background:rgba(26,86,219,0.15);border:1px solid rgba(26,86,219,0.25);border-radius:50%;display:flex;align-items:center;justify-content:function700;color:var(--ocean-light);flex-shrink:0;margin-top:1px;font-size:11px;font-weight:700;align-items:center;justify-content:center;">2</div>
+          <div style="width:22px;height:22px;background:rgba(26,86,219,0.15);border:1px solid rgba(26,86,219,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--ocean-light);flex-shrink:0;margin-top:1px;">2</div>
           <div><div style="font-size:13px;font-weight:600;margin-bottom:3px;">Text PAY</div><div style="font-size:12px;color:var(--text-muted);line-height:1.5;">Text your Tideline number: PAY [phone] [amount].</div></div>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start;">
@@ -349,7 +204,6 @@
         </div>
       </div>
     </div>
-
     <div style="background:rgba(10,31,32,0.5);border:1px solid rgba(20,184,166,0.18);border-radius:14px;padding:28px;">
       <div style="font-size:11px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--teal-bright);margin-bottom:16px;">Tideline Marinas</div>
       <div style="display:flex;flex-direction:column;gap:14px;">
@@ -367,7 +221,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -381,12 +234,14 @@
     <a href="/tideline/">Tideline Marinas</a>
     <a href="/privacy/">Privacy Policy</a>
     <a href="/terms/">Terms of Service</a>
+    <a href="/sms-disclosure/">SMS Disclosure</a>
     <a href="mailto:jack@tidelinetech.com">jack@tidelinetech.com</a>
   </div>
   <div class="footer-compliance">
     Message & data rates may apply. Text STOP to opt out, HELP for help. ·
     <a href="/privacy/" style="color:inherit;">Privacy Policy</a> ·
-    <a href="/terms/" style="color:inherit;">Terms of Service</a>
+    <a href="/terms/" style="color:inherit;">Terms of Service</a> ·
+    <a href="/sms-disclosure/" style="color:inherit;">SMS Opt-In Disclosure</a>
   </div>
 </footer>
 
