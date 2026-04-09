@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -449,7 +448,7 @@ function checkStripeCallback(){
   updateSteps(2);showPanel('panel-2');
   fetch(CONFIG.BACKEND_URL+'?action=stripe-connect',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:code,businessName:state.businessName,businessPhone:state.businessPhone,email:state.email})})
   .then(function(r){return r.text().then(function(t){var d=safeParseJSON(t);if(!r.ok)throw new Error((d&&d.error)?d.error:t);return d;});})
-  .then(function(d){if(d&&d.stripe_user_id){state.stripeConnected=true;state.stripeAccountId=d.stripe_user_id;state.accessToken=d.access_token;document.getElementById('connectedBadge').classList.add('show');document.getElementById('stripeConnectBtn').style.display='none';document.getElementById('continueToPayBtn').disabled=false;}else{throw new Error('No stripe_user_id in response');}})'
+  .then(function(d){if(d&&d.stripe_user_id){state.stripeConnected=true;state.stripeAccountId=d.stripe_user_id;state.accessToken=d.access_token;document.getElementById('connectedBadge').classList.add('show');document.getElementById('stripeConnectBtn').style.display='none';document.getElementById('continueToPayBtn').disabled=false;}else{throw new Error('No stripe_user_id in response');}})
   .catch(function(e){var b=document.getElementById('stripeErrorBox');b.textContent='Could not connect Stripe: '+e.message;b.style.display='block';});
 }
 function handleSubscribe(){
@@ -457,7 +456,7 @@ function handleSubscribe(){
   btn.disabled=true;bt.style.display='none';sp.style.display='block';eb.style.display='none';
   fetch(CONFIG.BACKEND_URL+'?action=create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({priceId:CONFIG.STRIPE_PRICE_ID,businessName:state.businessName,businessPhone:state.businessPhone,email:state.email,stripeAccountId:state.stripeAccountId,accessToken:state.accessToken,successUrl:window.location.origin+window.location.pathname+'?success=1&biz='+encodeURIComponent(state.businessName),cancelUrl:window.location.href})})
   .then(function(r){return r.text().then(function(t){var d=safeParseJSON(t);if(!r.ok)throw new Error((d&&d.error)?d.error:t);return d;});})
-  .then(function(d){if(d&&d.url){window.location.href=d.url;}else{throw new Error((d&&d.error)?d.error:'No checkout URL returned');}})'
+  .then(function(d){if(d&&d.url){window.location.href=d.url;}else{throw new Error((d&&d.error)?d.error:'No checkout URL returned');}})
   .catch(function(e){btn.disabled=false;bt.style.display='block';sp.style.display='none';eb.textContent='Error: '+e.message;eb.style.display='block';});
 }
 function checkSuccessCallback(){
