@@ -252,7 +252,7 @@ input.error{border-color:var(--error);background:#fdf0f0;}
 }
 @keyframes popIn{from{transform:scale(0);opacity:0;}to{transform:scale(1);opacity:1;}}
 .success-title{font-size:28px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px;}
-.success-desc{font-size:15px;color:var(--ink2);line-height:1.65;max-width:340px;margin:0 auto 28px;font-weight:300;}
+.success-desc{font-size:15px;color:var(--ink2);line-height:1.65;max-width:340px;margin:0 auto 28px;font-weight:300;}.success-desc strong{color:var(--ink);font-weight:700;}
 .sms-demo{background:var(--off);border:1.5px solid var(--border);border-radius:var(--r);padding:18px;text-align:left;margin-bottom:18px;}
 .sms-demo-label{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:12px;font-weight:700;}
 .sms-bubble{background:var(--blue);color:#fff;border-radius:14px 14px 3px 14px;padding:9px 13px;font-size:13px;font-weight:600;display:inline-block;margin-bottom:8px;}
@@ -382,15 +382,15 @@ input.error{border-color:var(--error);background:#fdf0f0;}
     <div class="success-card">
       <div class="success-icon"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 14L11 20L23 8" stroke="#0c9e6a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="success-title">You're live</div>
-      <div class="success-desc" id="successDesc">Your account is active. Text your Tideline number to send your first payment link.</div>
+      <div class="success-desc" id="successDesc">Your account is active. To send a payment link, text <strong>(860) 791-4473</strong>.</div>
       <div class="sms-demo">
-        <div class="sms-demo-label">Try it now</div>
-        <div class="sms-bubble">PAY 6105551234 150.00</div>
+        <div class="sms-demo-label">Text this number now: (860) 791-4473</div>
+        <div class="sms-bubble">To: (860) 791-4473<br>PAY 6105551234 150.00</div>
         <div class="cf"></div><br>
         <div class="sms-reply">Payment link for $150.00 sent to +16105551234</div>
         <div class="cf"></div>
       </div>
-      <div class="secure-note" style="opacity:.55;">Questions? Reply HELP to your Tideline number anytime</div>
+      <div class="secure-note" style="opacity:.55;">Questions? Text HELP to (860) 791-4473 anytime</div>
     </div>
   </div>
 
@@ -410,7 +410,7 @@ input.error{border-color:var(--error);background:#fdf0f0;}
 </footer>
 <script>
 var state={businessName:'',businessPhone:'',email:'',stripeConnected:false,stripeAccountId:'',accessToken:''};
-var CONFIG={STRIPE_CLIENT_ID:'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',STRIPE_PRICE_ID:'price_1TDCUPAfYhUXAsMqqEV12EYJ',BACKEND_URL:'https://tideline-pay-3364.twil.io/backend',TIDELINE_NUMBER:'+1 (860) 983-5640'};
+var CONFIG={STRIPE_CLIENT_ID:'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',STRIPE_PRICE_ID:'price_1TDCUPAfYhUXAsMqqEV12EYJ',BACKEND_URL:'https://tideline-pay-3364.twil.io/backend',TIDELINE_NUMBER:'(860) 791-4473'};
 function toE164(r){var d=r.replace(/\D/g,'');if(d.length===10)return'+1'+d;if(d.length===11&&d[0]==='1')return'+'+d;return '';}
 function safeParseJSON(t){var d;try{d=JSON.parse(t);if(typeof d==='string')d=JSON.parse(d);}catch(e){d={raw:t};}return d;}
 function updateSteps(s){[1,2,3].forEach(function(i){var el=document.getElementById('step-indicator-'+i);el.classList.remove('active','completed');if(i<s)el.classList.add('completed');if(i===s)el.classList.add('active');});document.getElementById('line-1-2').classList.toggle('done',s>1);document.getElementById('line-2-3').classList.toggle('done',s>2);}
@@ -463,7 +463,7 @@ function checkSuccessCallback(){
   var p=new URLSearchParams(window.location.search);
   if(p.get('success')==='1'){
     var biz=decodeURIComponent(p.get('biz')||'Your business');
-    document.getElementById('successDesc').textContent=biz+' is now live on Tideline PAY. Text '+CONFIG.TIDELINE_NUMBER+' to send your first payment link.';
+    document.getElementById('successDesc').innerHTML=biz+' is now live on Tideline PAY. To send your first payment link, text <strong>'+CONFIG.TIDELINE_NUMBER+'</strong>.';
     document.getElementById('stepsIndicator').style.display='none';
     showPanel('panel-success');window.history.replaceState({},'',window.location.pathname);
   }
