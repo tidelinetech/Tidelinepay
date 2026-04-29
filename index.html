@@ -410,7 +410,7 @@ input.error{border-color:var(--error);background:#fdf0f0;}
 </footer>
 <script>
 var state={businessName:'',businessPhone:'',email:'',stripeConnected:false,stripeAccountId:'',accessToken:''};
-var CONFIG={STRIPE_CLIENT_ID:'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',STRIPE_PRICE_ID:'price_1TDCUPAfYhUXAsMqqEV12EYJ',BACKEND_URL:'https://tideline-pay-3364.twil.io/backend',TIDELINE_NUMBER:'(860) 791-4473'};
+var CONFIG={STRIPE_CLIENT_ID:'ca_U1MduH8IWUEokZbzy6lz4O4S7RsDyTtB',STRIPE_PRICE_ID:'price_1TRah7AfYhUXAsMqMd5JxGzg',BACKEND_URL:'https://tideline-pay-3364.twil.io/backend',TIDELINE_NUMBER:'(860) 791-4473'};
 function toE164(r){var d=r.replace(/\D/g,'');if(d.length===10)return'+1'+d;if(d.length===11&&d[0]==='1')return'+'+d;return '';}
 function safeParseJSON(t){var d;try{d=JSON.parse(t);if(typeof d==='string')d=JSON.parse(d);}catch(e){d={raw:t};}return d;}
 function updateSteps(s){[1,2,3].forEach(function(i){var el=document.getElementById('step-indicator-'+i);el.classList.remove('active','completed');if(i<s)el.classList.add('completed');if(i===s)el.classList.add('active');});document.getElementById('line-1-2').classList.toggle('done',s>1);document.getElementById('line-2-3').classList.toggle('done',s>2);}
